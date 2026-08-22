@@ -1,0 +1,11 @@
+Et les Philistins rassemblèrent toutes leurs armées à Aphek ; et Israël était campé à la source qui est à Jizreël.
+Et les princes des Philistins passèrent par centaines et par milliers, et David et ses hommes passèrent à l’arrière-garde avec Akish.
+Et les chefs des Philistins dirent : Que sont ces Hébreux ? Et Akish dit aux chefs des Philistins : N’est-ce pas David, serviteur de Saül, roi d’Israël, qui a été avec moi tant de jours [déjà], ou tant d’années ? et je n’ai rien trouvé en lui, depuis le jour qu’il est tombé chez moi jusqu’à ce jour.
+Et les chefs des Philistins se mirent en colère contre lui, et les chefs des Philistins lui dirent : Renvoie cet homme, et qu’il retourne en son lieu, là où tu l’as établi, et qu’il ne descende pas avec nous à la bataille, afin qu’il ne soit pas notre adversaire dans la bataille ; car comment celui-là se rendrait-il agréable à son seigneur, sinon avec les têtes de ces hommes-ci ?
+N’est-ce pas ce David, au sujet duquel on s’entre-répondait dans les danses, en disant : Saül a frappé ses mille, et David ses dix mille ?
+Et Akish appela David, et lui dit : L’Éternel est vivant, que tu es [un homme] droit, et ta sortie et ton entrée avec moi à l’armée ont été bonnes à mes yeux, car je n’ai pas trouvé de mal en toi depuis le jour de ton entrée auprès de moi jusqu’à ce jour ; mais tu n’es pas agréable aux yeux des princes.
+Et maintenant, retourne-t’en et va en paix, afin que tu ne fasses rien qui soit mauvais aux yeux des princes des Philistins.
+Et David dit à Akish : Mais qu’ai-je fait ? et qu’as-tu trouvé en ton serviteur, depuis le jour que j’ai été devant toi jusqu’à ce jour, pour que je ne puisse pas aller et combattre contre les ennemis du roi, mon seigneur ?
+Et Akish répondit et dit à David : Je sais que tu es agréable à mes yeux comme un ange de Dieu ; seulement les chefs des Philistins ont dit : Il ne montera point avec nous à la bataille.
+Et maintenant, lève-toi de bonne heure le matin, et les serviteurs de ton seigneur qui sont venus avec toi, et levez-vous de bon matin, dès qu’il fait jour, et allez-vous-en.
+Et David se leva de bonne heure, lui et ses hommes, pour partir dès le matin, afin de retourner au pays des Philistins. Et les Philistins montèrent à Jizreël.

@@ -1,0 +1,25 @@
+Et Jerubbaal, qui est Gédéon, se leva de bonne heure, et tout le peuple qui était avec lui, et ils campèrent près de la source de Harod ; et il avait le camp de Madian au nord, du côté de la colline de Moré, dans la vallée.
+Et l’Éternel dit à Gédéon : Le peuple qui est avec toi est trop nombreux, pour que je livre Madian en leur main, de peur qu’Israël ne se glorifie contre moi, disant : Ma main m’a sauvé.
+Et maintenant, crie aux oreilles du peuple, disant : Quiconque est peureux et tremble, qu’il s’en retourne et s’éloigne de la montagne de Galaad. Et vingt-deux mille [hommes] du peuple s’en retournèrent ; et il en resta dix mille.
+Et l’Éternel dit à Gédéon : Le peuple est encore nombreux ; fais-les descendre vers l’eau, et là je te les épurerai ; et il arrivera que celui dont je te dirai : Celui-ci ira avec toi, celui-là ira avec toi ; et que chacun de qui je te dirai : Celui-ci n’ira pas avec toi, celui-là n’ira pas.
+Et il fit descendre le peuple vers l’eau. Et l’Éternel dit à Gédéon : Quiconque lapera l’eau avec sa langue, comme lape le chien, tu le mettras à part, et aussi tous ceux qui se courberont sur leurs genoux pour boire.
+Et le nombre de ceux qui lapèrent dans leur main [en la portant] à leur bouche, fut de trois cents hommes ; et tout le reste du peuple se courba sur ses genoux pour boire l’eau.
+Et l’Éternel dit à Gédéon : Par les trois cents hommes qui ont lapé [l’eau] je vous sauverai, et je livrerai Madian en ta main ; mais que tout le peuple s’en aille, chacun en son lieu.
+Et les [trois cents hommes] prirent en leurs mains les vivres du peuple et ses trompettes. Et [Gédéon] renvoya tous les hommes d’Israël, chacun à sa tente, et retint les trois cents hommes. Or le camp de Madian était au-dessous de lui, dans la vallée.
+Et il arriva, cette nuit-là, que l’Éternel lui dit : Lève-toi ; descends au camp, car je l’ai livré en ta main ;
+et si tu crains d’y descendre, descends vers le camp, toi et Pura, ton jeune homme ;
+et tu entendras ce qu’ils diront, et ensuite tes mains seront fortifiées et tu descendras au camp. Et il descendit, lui et Para, son jeune homme, aux avant-postes des hommes armés qui étaient dans le camp.
+Et Madian et Amalek et tous les fils de l’orient s’étendaient dans la vallée, nombreux comme des sauterelles ; et leurs chameaux étaient sans nombre, en multitude comme le sable qui est sur le bord de la mer.
+Et Gédéon arriva, et voici, un homme racontait un songe à son compagnon ; et il disait : Voici, j’ai songé un songe ; et voici, un gâteau de pain d’orge roulait dans le camp de Madian, et il arriva jusqu’à la tente et la heurta, et elle tomba ; et il la retourna sens dessus dessous, et la tente était là renversée.
+Et son compagnon répondit et dit : Ce n’est pas autre chose que l’épée de Gédéon, fils de Joas, homme d’Israël : Dieu a livré Madian et tout le camp en sa main.
+Et il arriva que, lorsque Gédéon entendit le récit du songe et son interprétation, il se prosterna. Et il retourna au camp d’Israël, et dit : Levez-vous, car l’Éternel a livré le camp de Madian en votre main.
+Et il divisa les trois cents hommes en trois corps, et il leur mit à tous des trompettes à la main, et des cruches vides, et des torches dans les cruches.
+Et il leur dit : Regardez ce que je vais faire, et faites de même ; voici, quand j’arriverai au bout du camp, alors ce que je ferai, vous le ferez de même ;
+et quand je sonnerai de la trompette, moi et tous ceux qui sont avec moi, vous aussi vous sonnerez des trompettes autour de tout le camp, et vous direz : Pour l’Éternel et pour Gédéon !
+Et Gédéon et les cent hommes qui étaient avec lui arrivèrent au bout du camp, au commencement de la veille du milieu [de la nuit] ; on venait seulement de placer les gardes. Et ils sonnèrent des trompettes, et brisèrent les cruches qu’ils avaient à la main ;
+et les trois corps sonnèrent des trompettes, et brisèrent les cruches : ils tenaient dans leur main gauche les torches, et dans leur main droite les trompettes pour sonner, et criaient : L’épée de l’Éternel et de Gédéon !
+Et ils se tenaient chacun à sa place autour du camp ; et tout le camp se mit à courir, et à pousser des cris, et à fuir.
+Et les trois cents hommes sonnaient des trompettes ; et l’Éternel tourna l’épée de chacun contre son compagnon, dans tout le camp. Et le camp s’enfuit jusqu’à Beth-Sitta, vers Tseréra, jusqu’au bord d’Abel-Mehola, près de Tabbath.
+Et les hommes d’Israël se rassemblèrent, de Nephthali, et d’Aser et de tout Manassé, et poursuivirent Madian.
+Et Gédéon envoya des messagers dans toute la montagne d’Éphraïm, pour dire : Descendez à la rencontre de Madian, et enlevez-leur les eaux jusqu’à Beth-Bara, et le Jourdain. Et tous les hommes d’Éphraïm se rassemblèrent, et s’emparèrent des eaux jusqu’à Beth-Bara, et du Jourdain.
+Et ils prirent les deux princes de Madian, Oreb et Zeëb ; et ils tuèrent Oreb au rocher d’Oreb, et ils tuèrent Zeëb au pressoir de Zeëb. Et ils poursuivirent Madian, et apportèrent les têtes d’Oreb et de Zeëb, à Gédéon, de l’autre côté du Jourdain.

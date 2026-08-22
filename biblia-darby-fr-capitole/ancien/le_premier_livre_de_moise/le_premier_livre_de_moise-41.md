@@ -1,0 +1,57 @@
+Et il arriva, au bout de deux années révolues, que le Pharaon songea, et voici, il se tenait près du fleuve :
+et voici, du fleuve montaient sept vaches, belles à voir, et grasses de chair, et elles paissaient dans les roseaux.
+Et voici, après elles, sept autres vaches montaient du fleuve, laides à voir, et pauvres de chair ; et elles se tinrent à côté des vaches qui étaient sur le bord du fleuve ;
+et les vaches laides à voir, et pauvres de chair, mangèrent les sept vaches belles à voir, et grasses. Et le Pharaon s’éveilla.
+Et il s’endormit, et songea une seconde fois : et voici, sept épis gras et bons montaient sur une seule tige.
+Et voici, sept épis pauvres et brûlés par le vent d’orient germaient après eux ;
+et les épis pauvres dévorèrent les sept épis gras et pleins. Et le Pharaon s’éveilla ; et voilà, [c’était] un songe.
+Et il arriva, au matin, que son esprit fut troublé ; et il envoya, et appela tous les devins de l’Égypte, et tous ses sages. Et le Pharaon leur raconta ses songes ; et il n’y eut personne qui les interprétât au Pharaon.
+Et le chef des échansons parla au Pharaon, disant : Je rappelle aujourd’hui mes fautes.
+Le Pharaon fut irrité contre ses serviteurs, et me mit sous garde, moi et le chef des panetiers, dans la maison du chef des gardes ;
+et nous songeâmes un songe dans une même nuit, moi et lui ; nous songeâmes chacun selon l’interprétation de son songe.
+Et il y avait là avec nous un jeune hébreu, serviteur du chef des gardes ; et nous lui racontâmes, et il nous interpréta nos songes ; il donna à chacun l’interprétation selon son songe.
+Et il arriva que, comme il nous avait interprété, ainsi il advint : moi, [le Pharaon] me rétablit dans mon poste, et lui, il le pendit.
+Et le Pharaon envoya, et appela Joseph ; et on le fit accourir de la fosse, et il se rasa, et changea de vêtements ; et il vint vers le Pharaon.
+Et le Pharaon dit à Joseph : J’ai songé un songe, et il n’y a personne pour l’interpréter ; et j’ai entendu dire de toi que tu comprends un songe pour l’interpréter.
+Et Joseph répondit au Pharaon, disant : Cela n’est pas à moi ; Dieu donnera une réponse de paix au Pharaon.
+Et le Pharaon dit à Joseph : Dans mon songe voici, je me tenais sur le bord du fleuve ;
+et voici, du fleuve montaient sept vaches grasses de chair, et belles à voir, et elles paissaient dans les roseaux.
+Et voici, sept autres vaches montaient après elles, chétives, et très laides à voir, et maigres de chair : je n’en ai pas vu de semblables en laideur dans tout le pays d’Égypte.
+Et les vaches maigres et laides mangèrent les sept premières vaches, les grasses :
+elles entrèrent dans leur ventre, et il ne paraissait point qu’elles fussent entrées dans leur ventre, et leur aspect était aussi laid qu’au commencement. Et je m’éveillai.
+Et je vis dans mon songe ; et voici, sept épis montaient sur une seule tige, pleins et bons ;
+et voici, sept épis desséchés, pauvres, brûlés par le vent d’orient, germaient après eux ;
+et les épis pauvres dévorèrent les sept bons épis. Et je l’ai dit aux devins ; et il n’y a eu personne qui me l’expliquât.
+Et Joseph dit au pharaon : Le songe du Pharaon est un : Dieu a déclaré au Pharaon ce qu’il va faire.
+Les sept bonnes vaches, ce sont sept années ; et les sept bons épis, ce sont sept années : c’est un seul songe.
+Et les sept vaches maigres et laides, qui montaient après elles, ce sont sept années ; et les sept épis vides, brûlés par le vent d’orient, ce sont sept années de famine.
+C’est la parole que je dis au Pharaon : ce que Dieu va faire, il le montre au Pharaon.
+Voici, sept années de grande abondance viennent dans tout le pays d’Égypte ;
+et sept années de famine se lèveront après elles ; et toute l’abondance sera oubliée dans le pays d’Égypte et la famine consumera le pays ;
+et l’abondance ne sera plus connue dans le pays, à cause de cette famine [qui viendra] après ; car elle sera très intense.
+Et que le songe ait été répété deux fois au Pharaon, c’est que la chose est arrêtée de la part de Dieu, et que Dieu se hâte de la faire.
+Et maintenant, que le Pharaon se cherche un homme intelligent et sage, et qu’il l’établisse sur le pays d’Égypte.
+Que le Pharaon fasse [cela], et qu’il prépose des commissaires sur le pays, et qu’il lève le cinquième du pays d’Égypte pendant les sept années d’abondance ;
+et qu’ils rassemblent tous les vivres de ces bonnes années qui viennent, et qu’ils amassent le blé sous la main du Pharaon pour nourriture dans les villes, et qu’ils le gardent.
+Et les vivres seront une réserve pour le pays, pour les sept années de famine qui seront dans le pays d’Égypte, et le pays ne sera pas détruit par la famine.
+Et la chose fut bonne aux yeux du Pharaon et aux yeux de tous ses serviteurs.
+Et le Pharaon dit à ses serviteurs : Trouverons-nous un homme semblable à celui-ci, en qui est l’esprit des dieux ?
+Et le Pharaon dit à Joseph : Puisque Dieu t’a fait connaître tout cela, personne n’est intelligent et sage comme toi.
+Toi, tu seras sur ma maison, et tout mon peuple se dirigera d’après ton commandement ; seulement quant au trône, je serai plus grand que toi.
+Et le Pharaon dit à Joseph : Vois, je t’ai établi sur tout le pays d’Égypte.
+Et le Pharaon ôta son anneau de sa main, et le mit à la main de Joseph, et il le revêtit de vêtements de byssus,
+et mit un collier d’or à son cou ; et il le fit monter sur le second char qui était à lui ; et on criait devant lui : Abrec ! Et il l’établit sur tout le pays d’Égypte.
+Et le Pharaon dit à Joseph : Moi je suis le Pharaon : sans toi nul ne lèvera la main ni le pied dans tout le pays d’Égypte.
+Et le Pharaon appela le nom de Joseph Tsaphnath-Pahnéakh ; et il lui donna pour femme Asnath, fille de Poti-Phéra, sacrificateur d’On. Et Joseph parcourut le pays d’Égypte.
+Et Joseph était âgé de trente ans lorsqu’il se tint devant le Pharaon, le roi d’Égypte ; et Joseph sortit de devant le Pharaon, et passa par tout le pays d’Égypte.
+Et la terre rapporta à pleines mains pendant les sept années d’abondance.
+Et [Joseph] rassembla tous les vivres des sept années qui furent dans le pays d’Égypte, et mis les vivres dans les villes ; il mit dans chaque ville les vivres [provenant] des champs qui étaient autour d’elle.
+Et Joseph amassa du blé, comme le sable de la mer, une immense quantité, jusqu’à ce qu’on cessa de compter, parce qu’il était sans nombre.
+Et, avant que vînt l’année de la famine, il naquit à Joseph deux fils, qu’Asnath, fille de Poti-Phéra, sacrificateur d’On, lui enfanta.
+Et Joseph appela le nom du premier-né Manassé : car Dieu m’a fait oublier toute ma peine, et toute la maison de mon père.
+Et il appela le nom du second Éphraïm : car Dieu m’a fait fructifier dans le pays de mon affliction.
+Et les sept années de l’abondance qui avait été dans le pays d’Égypte finirent ;
+et les sept années de la famine commencèrent à venir, comme Joseph avait dit. Et il y eut famine dans tous les pays ; mais dans tout le pays d’Égypte il y avait du pain.
+Et tout le pays d’Égypte eut faim, et le peuple cria au Pharaon pour du pain ; et le Pharaon dit à tous les Égyptiens : Allez à Joseph ; faites ce qu’il vous dira.
+Et la famine était sur toute la face de la terre ; et Joseph ouvrit tous les lieux de dépôt, et vendit du blé aux Égyptiens ; et la famine sévissait dans le pays d’Égypte.
+Et de toute la terre on venait en Égypte, vers Joseph, pour acheter du blé ; car la famine sévissait sur toute la terre.

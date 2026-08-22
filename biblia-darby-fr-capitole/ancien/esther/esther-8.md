@@ -1,0 +1,17 @@
+Ce jour-là, le roi Assuérus donna à la reine Esther la maison d’Haman, l’oppresseur des Juifs. Et Mardochée entra devant le roi, car Esther avait déclaré ce qu’il lui était.
+Et le roi ôta son anneau qu’il avait retiré à Haman, et le donna à Mardochée. Et Esther établit Mardochée sur la maison d’Haman.
+Et Esther parla encore devant le roi, et tomba à ses pieds et pleura, et le supplia de mettre à néant le mal médité par Haman, l’Agaguite, et le dessein qu’il avait formé contre les Juifs.
+Et le roi tendit à Esther le sceptre d’or, et Esther se leva et se tint devant le roi,
+et elle dit : Si le roi le trouve bon, et si j’ai trouvé faveur devant lui, et que le roi estime la chose avantageuse, et que moi, je sois agréable à ses yeux, qu’on écrive pour révoquer les lettres ourdies par Haman, fils d’Hammedatha, l’Agaguite, qu’il a écrites pour faire périr les juifs qui sont dans toutes les provinces du roi.
+Car comment pourrai-je voir le malheur qui atteindra mon peuple, et comment pourrai-je voir la destruction de ma race ?
+Et le roi Assuérus dit à la reine Esther et à Mardochée, le Juif : Voici, j’ai donné à Esther la maison d’Haman ; et lui, on l’a pendu au bois parce qu’il a étendu sa main contre les juifs.
+Vous donc, écrivez au nom du roi à l’égard des Juifs ce qui vous paraîtra bon, et scellez-le avec l’anneau du roi. Car un écrit qui a été écrit au nom du roi et scellé avec l’anneau du roi ne peut être révoqué.
+Et les scribes du roi furent appelés en ce temps-là, au troisième mois, qui est le mois de Sivan, le vingt-troisième [jour] du mois ; et, selon tout ce que Mardochée commanda, on écrivit aux Juifs, et aux satrapes, et aux gouverneurs, et aux chefs des provinces, depuis l’Inde jusqu’à l’Éthiopie, cent vingt-sept provinces, à chaque province selon son écriture, et à chaque peuple selon sa langue, et aux Juifs selon leur écriture et selon leur langue.
+Et [Mardochée] écrivit au nom du roi Assuérus et scella avec l’anneau du roi ; et il envoya des lettres par des courriers à cheval, montés sur des coursiers, des chevaux de race, produits des haras.
+[Ces lettres portaient] que le roi accordait aux Juifs, dans chaque ville, de s’assembler et de se mettre en défense pour leur vie, [et] de détruire, tuer, et faire périr toute force du peuple et de la province qui les opprimerait, — eux [et leurs] enfants et [leurs] femmes, et de mettre au pillage leurs biens,
+en un même jour, dans toutes les provinces du roi Assuérus, le treizième [jour] du douzième mois, qui est le mois d’Adar.
+Pour que l’édit fût rendu [public] dans chaque province, une copie de l’écrit fut portée à la connaissance de tous les peuples, afin que les Juifs fussent prêts pour ce jour-là, pour se venger de leurs ennemis.
+Les courriers, montés sur les coursiers, des chevaux de race, partirent, hâtés et pressés par la parole du roi. Et l’édit fut rendu à Suse, la capitale.
+Et Mardochée sortit de devant le roi, avec un vêtement royal bleu et blanc, une grande couronne d’or, et un manteau de byssus et de pourpre ; et la ville de Suse poussait des cris de joie et se réjouissait.
+Pour les Juifs il y avait lumière et joie, et allégresse et honneur.
+Et, dans chaque province et dans chaque ville, partout où parvenait la parole du roi et son édit, il y eut de la joie et de l’allégresse pour les Juifs, un festin et un jour de fête ; et beaucoup de gens parmi les peuples du pays se firent Juifs, car la frayeur des Juifs tomba sur eux.

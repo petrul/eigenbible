@@ -1,0 +1,14 @@
+Crie à plein gosier, ne te retiens pas ; élève ta voix comme une trompette, et déclare à mon peuple leur transgression, et à la maison de Jacob leurs péchés.
+Cependant ils me cherchent tous les jours et trouvent leur plaisir à connaître mes voies, comme une nation qui pratiquerait la justice, et n’aurait pas abandonné le juste jugement de son Dieu ; ils me demandent les ordonnances de la justice, ils trouvent leur plaisir à s’approcher de Dieu.
+Pourquoi avons-nous jeûné, et tu ne l’as pas vu ? [et] avons-nous affligé nos âmes, et tu ne le sais pas ? Voici, au jour de vos jeûnes, vous cherchez votre plaisir, et vous exigez durement tous les travaux qui vous sont dus.
+Voici, vous jeûnez pour contester et quereller, et pour frapper d’un poing méchant. Vous ne jeûnez pas maintenant, pour faire entendre votre voix en haut.
+Est-ce un jeûne comme celui-là que j’ai choisi, un jour où un homme afflige son âme ? Courber sa tête comme un roseau, et étendre sous soi le sac et la cendre, appelleras-tu cela un jeûne, et un jour agréable à l’Éternel ?
+N’est-ce pas ici le jeûne que j’ai choisi, qu’on rompe les chaînes de l’iniquité, qu’on fasse tomber les liens du joug, et qu’on renvoie libres les opprimés, et que vous brisiez tout joug ?
+N’est-ce pas que tu partages ton pain avec celui qui a faim, et que tu fasses entrer dans la maison les affligés qui errent sans asile ! quand tu vois un homme nu, que tu le couvres, et que tu ne te caches pas à ta propre chair ?
+Alors ta lumière jaillira comme l’aurore et ta santé germera promptement, et ta justice marchera devant toi, la gloire de l’Éternel sera ton arrière-garde.
+Alors tu appelleras, et l’Éternel répondra ; tu crieras, et il dira : Me voici. Si tu ôtes du milieu de toi le joug, [si tu cesses] de montrer au doigt et de parler vanité,
+si tu prodigues ton âme à l’affamé, et que tu rassasies l’âme de l’affligé, ta lumière se lèvera dans les ténèbres, et ton obscurité sera comme le midi.
+Et l’Éternel te conduira continuellement, et rassasiera ton âme dans les sécheresses, et rendra agiles tes os ; et tu seras comme un jardin arrosé, et comme une source jaillissante dont les eaux ne trompent pas.
+Et ceux qui [seront issus] de toi bâtiront ce qui était ruiné dès longtemps ; tu relèveras les fondements [qui étaient restés] de génération en génération, et on t’appellera : réparateur des brèches, restaurateur des sentiers fréquentés.
+Si tu gardes ton pied de [profaner] le sabbat, de faire ton plaisir en mon saint jour, si tu appelles le sabbat [tes] délices, [et] honorable le saint [jour] de l’Éternel, si tu l’honores en t’abstenant de suivre tes propres chemins, de chercher ton plaisir et de dire des paroles [vaines],
+alors tu trouveras tes délices en l’Éternel, et je te ferai passer à cheval sur les lieux hauts de la terre, et je te nourrirai de l’héritage de Jacob, ton père : car la bouche de l’Éternel a parlé.

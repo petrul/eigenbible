@@ -1,0 +1,16 @@
+Venit-am în grădina mea, sora mea, mireasa mea! Strâns-am miruri aromate, miere am mâncat din faguri, vin şi lapte am băut. Mâncaţi şi beţi, prieteni, fiţi beţi de dragoste, iubiţii mei!
+De dormit dormeam, dar inima-mi veghea. Auzi glasul celui drag! El la uşă bătând zice: Deschide-mi, surioară, deschide-mi, iubita mea, porumbiţa mea, curata mea, capul îmi este plin de rouă şi părul ud de vlaga nopţii.
+Haina eu mi-am dezbrăcat, cum s-o-mbrac eu iar? Picioarele mi le-am spălat, cum să le murdăresc eu iar?
+Iubitul mâna pe fereastră a întins şi inima mi-a tresărit.
+Iute să-i deschid m-am ridicat, din mână mir mi-a picurat, mir din degete mi-a curs pe închizătoarea uşii.
+Celui drag eu i-am deschis, dar iubitul meu plecase; sufletu-mi încremenise, când cel drag mie-mi vorbise; iată eu l-am căutat, dar de-aflat nu l-am aflat; pe nume l-am tot strigat, dar răspuns nu mi s-a dat.
+Întâlnitu-m-au străjerii, cei ce târgul străjuiesc, m-au izbit şi m-au rănit şi vălul mi l-au luat, cei ce zidul îl păzesc.
+Fete din Ierusalim, vă jur: De-ntâlniţi pe dragul meu, ce să-i spuneţi oare lui? Că-s bolnavă de iubire.
+Ce are iubitul tău mai mult ca alţii, o tu, cea mai frumoasă-ntre femei? Cu cît iubitul tău e mai ales ca alţi iubiţi, ca să ne rogi aşa cu jurământ?
+Iubitul meu e alb şi rumen, şi între zeci de mii este întâiul.
+Capul lui, aur curat; părul lui, păr ondulat, negru-nchis, pană de corb.
+Ochii lui sunt porumbei, ce în lapte trupu-şi scaldă, la izvor stând mulţumiţi.
+Trandafir mirositor sunt obrajii lui, strat de ierburi aromate. Iar buzele lui, la fel cu crinii roşii, în mir mirositor sunt scăldate.
+Braiele-i sunt drugi de aur cu topaze împodobite; pieptul lui e scut de fildeş cu safire ferecat.
+Stâlpi de marmură sunt picioarele lui, pe temei de aur aşezate. Înfăţişarea lui e ca Libanul şi e măreţ ca cedrul.
+Gura lui e negrăit de dulce şi totul este în el fermecător; iată cum este al meu iubit, fiice din Ierusalim, iată cum este al meu mire!

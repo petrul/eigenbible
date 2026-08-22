@@ -1,0 +1,5 @@
+Doamne, cine va locui în locaşul Tău şi cine se va sălăşlui în muntele cel sfânt al Tău?
+Cel ce umblă fără prihană şi face dreptate, cel ce are adevărul în inima sa,
+Cel ce n-a viclenit cu limba, nici n-a făcut rău împotriva vecinului său şi ocară n-a rostit împotriva aproapelui său.
+Defăimat să fie înaintea Lui „el ce vicleneşte, iar pe cei ce se tem de Domnul îi slăveşte; cel ce se jură aproapelui său şi nu se leapădă,
+Argintul său nu l-a dat cu camătă şi daruri împotriva celor nevinovaţi n-a luat. Cel ce face acestea nu se va clătina în veac.

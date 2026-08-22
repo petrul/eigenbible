@@ -1,0 +1,27 @@
+La première année de Darius, fils d’Assuérus, de la semence des Mèdes, qui fut fait roi sur le royaume des Chaldéens,
+la première année de son règne, moi, Daniel, je compris par les livres que le nombre des années touchant lequel la parole de l’Éternel vint à Jérémie le prophète, pour l’accomplissement des désolations de Jérusalem, était de soixante-dix années.
+Et je tournai ma face vers le Seigneur Dieu, pour [le] rechercher par la prière et la supplication, dans le jeûne, et le sac et la cendre.
+Et je priai l’Éternel, mon Dieu, et je fis ma confession, et je dis : Je te supplie, Seigneur, le Dieu grand et terrible, qui gardes l’alliance et la bonté envers ceux qui t’aiment et qui gardent tes commandements !
+Nous avons péché, nous avons commis l’iniquité, nous avons agi méchamment, et nous nous sommes rebellés et nous nous sommes détournés de tes commandements et de tes ordonnances ;
+et nous n’avons pas écouté tes serviteurs les prophètes, qui parlaient en ton nom à nos rois, à nos princes, et à nos pères, et à tout le peuple du pays.
+À toi, Seigneur, la justice, et à nous la confusion de face, comme [elle est] aujourd’hui, — aux hommes de Juda et aux habitants de Jérusalem et à tout Israël, à ceux qui sont près et à ceux qui sont loin, dans tous les pays où tu les as chassés, à cause de leurs infidélités par lesquelles ils ont été infidèles envers toi.
+Seigneur, à nous la confusion de face, à nos rois, à nos princes, et à nos pères, parce que nous avons péché contre toi.
+Au Seigneur notre Dieu sont les compassions et les pardons, car nous nous sommes rebellés contre lui,
+et nous n’avons pas écouté la voix de l’Éternel, notre Dieu, pour marcher selon ses lois qu’il a mises devant nous par ses serviteurs les prophètes.
+Et tout Israël a transgressé ta loi et s’est détourné en n’écoutant pas ta voix. Alors ont été versés sur nous l’exécration et le serment qui sont écrits dans la loi de Moïse, serviteur de Dieu, parce que nous avons péché contre lui ;
+et il a accompli ses paroles qu’il a prononcées contre nous et contre nos juges qui nous jugeaient, en faisant venir sur nous un mal si grand que rien ne s’est fait sous tous les cieux comme ce qui a été fait à Jérusalem.
+Selon qu’il est écrit dans la loi de Moïse, tout ce mal est venu sur nous ; et nous n’avons pas imploré l’Éternel, notre Dieu, afin de revenir de nos iniquités et de comprendre ta vérité.
+Et l’Éternel a veillé sur le mal, et l’a fait venir sur nous ; car l’Éternel, notre Dieu, est juste dans toutes les œuvres qu’il a faites ; et nous n’avons pas écouté sa voix. —
+Et maintenant, Seigneur, notre Dieu, toi qui as fait sortir ton peuple du pays d’Égypte à main forte, et qui t’es fait un nom, comme [il paraît] aujourd’hui : nous avons péché, nous avons agi méchamment !
+Seigneur, selon toutes tes justices, que ta colère et ta fureur se détournent, je te prie, de ta ville de Jérusalem, ta sainte montagne. Car à cause de nos péchés, et à cause des iniquités de nos pères, Jérusalem et ton peuple sont en opprobre à tous ceux qui nous entourent.
+Et maintenant, écoute, ô notre Dieu, la prière de ton serviteur et ses supplications, et, pour l’amour du Seigneur, fais luire ta face sur ton sanctuaire désolé.
+Incline ton oreille, ô mon Dieu, et écoute ; ouvre tes yeux, et vois nos désolations, et la ville qui est appelée de ton nom. Car ce n’est pas à cause de nos justices que nous présentons devant toi nos supplications, mais à cause de tes grandes compassions.
+Seigneur, écoute ; Seigneur, pardonne ; Seigneur, sois attentif et agis ; ne tarde pas, à cause de toi-même, mon Dieu ; car ta ville et ton peuple sont appelés de ton nom.
+Et je parlais encore, et je priais et confessais mon péché et le péché de mon peuple Israël, et je présentais ma supplication devant l’Éternel, mon Dieu, pour la sainte montagne de mon Dieu, —
+je parlais encore en priant, et l’homme Gabriel que j’avais vu dans la vision au commencement, volant avec rapidité, me toucha vers le temps de l’offrande de gâteau du soir.
+Et il me fit comprendre, et me parla, et dit : Daniel, je suis maintenant sorti pour éclairer ton intelligence.
+Au commencement de tes supplications la parole est sortie, et je suis venu pour [te la] déclarer, car tu es un bien-aimé. Comprends donc la parole, et sois intelligent dans la vision :
+Soixante-dix semaines ont été déterminées sur ton peuple et sur ta sainte ville, pour clore la transgression, et pour en finir avec les péchés, et pour faire propitiation pour l’iniquité, et pour introduire la justice des siècles, et pour sceller la vision et le prophète, et pour oindre le saint des saints.
+Et sache, et comprends : Depuis la sortie de la parole pour rétablir et rebâtir Jérusalem, jusqu’au Messie, [le] prince, il y a sept semaines et soixante-deux semaines ; la place et le fossé seront rebâtis, et [cela] en des temps de trouble.
+Et après les soixante-deux semaines, [le] Messie sera retranché et n’aura rien ; et le peuple du prince qui viendra, détruira la ville et le lieu saint, et la fin en sera avec débordement ; et jusqu’à la fin [il y aura] guerre, un décret de désolations.
+Et il confirmera une alliance avec la multitude [pour] une semaine ; et au milieu de la semaine il fera cesser le sacrifice et l’offrande ; et à cause de la protection des abominations [il y aura] un désolateur, et jusqu’à ce que la consomption et [ce qui est] décrété soient versés sur la désolée.

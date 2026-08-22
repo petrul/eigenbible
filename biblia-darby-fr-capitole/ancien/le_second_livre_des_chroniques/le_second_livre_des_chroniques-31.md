@@ -1,0 +1,21 @@
+Et lorsque tout cela fut terminé, tous ceux d’Israël qui se trouvèrent [là], s’en allèrent par les villes de Juda, et brisèrent les statues, et abattirent les ashères, et démolirent les hauts lieux et les autels dans tout Juda et Benjamin, et en Éphraïm et Manassé, jusqu’à ce qu’ils eussent tout détruit ; et tous les fils d’Israël retournèrent dans leurs villes, chacun dans sa possession.
+Et Ézéchias établit les classes des sacrificateurs et des lévites, selon leurs classes, chacun selon son service, tant sacrificateurs que lévites, pour les holocaustes et pour les sacrifices de prospérités, pour faire le service et pour rendre grâces et pour louer aux portes des parvis de l’Éternel.
+Et [il établit] que la portion du roi [serait prise] sur ses biens, pour les holocaustes : pour les holocaustes du matin et du soir, et pour les holocaustes des sabbats et des nouvelles lunes et des fêtes solennelles, comme il est écrit dans la loi de l’Éternel.
+Et il dit au peuple, aux habitants de Jérusalem, de donner la portion des sacrificateurs et des lévites, afin qu’ils s’attachassent à la loi de l’Éternel.
+Et quand la parole [du roi] se répandit, les fils d’Israël apportèrent en grande quantité les prémices du blé, du moût, et de l’huile, et du miel, et de tous les produits des champs ; et ils apportèrent la dîme de tout, en abondance.
+Et les fils d’Israël et de Juda, qui habitaient dans les villes de Juda, eux aussi apportèrent la dîme du gros bétail et du menu bétail, et la dîme des choses saintes, qui étaient consacrées à l’Éternel, leur Dieu, et ils les mirent par monceaux.
+Au troisième mois, ils commencèrent de faire les monceaux, et au septième mois ils achevèrent.
+Et Ézéchias et les chefs vinrent et virent les monceaux, et ils bénirent l’Éternel et son peuple Israël.
+Et Ézéchias s’informa auprès des sacrificateurs et des lévites au sujet des monceaux.
+Et Azaria, le principal sacrificateur, qui était de la maison de Tsadok, lui parla, et dit : Depuis qu’on a commencé d’apporter l’offrande dans la maison de l’Éternel, on a mangé et on a été rassasié, et il en est resté en abondance ; car l’Éternel a béni son peuple ; et ce qui reste, c’est cette grande quantité.
+Et Ézéchias dit qu’on préparât des chambres dans la maison de l’Éternel ; et on les prépara ;
+et on apporta fidèlement l’offrande, et la dîme, et les choses saintes ; et Conania, le lévite, en eut la surintendance, et Shimhi, son frère, en second ;
+et Jekhiel, et Azazia, et Nakhath, et Asçaël, et Jerimoth, et Jozabad, et Éliel, et Jismakia, et Makhath, et Benaïa, étaient intendants sous l’autorité de Conania et de Shimhi, son frère, par l’ordre du roi Ézéchias, et d’Azaria, prince de la maison de Dieu.
+Et Koré, fils de Jimna, le lévite, qui était portier vers le levant, [était préposé] sur les offrandes volontaires [faites] à Dieu, pour distribuer l’offrande de l’Éternel et les choses très saintes ;
+et il avait sous ses ordres Éden, et Minjamin, et Jéshua, et Shemahia, Amaria et Shecania, dans les villes des sacrificateurs, pour faire les distributions avec fidélité à leurs frères, selon leurs classes, au grand comme au petit,
+outre ceux qui étaient enregistrés comme mâles dans les généalogies, depuis l’âge de trois ans et au-dessus, à chacun de ceux qui entraient dans la maison de l’Éternel, chaque jour pour l’affaire du jour, pour servir dans leurs charges, selon leurs classes ;
+et aux sacrificateurs enregistrés selon leurs maisons de pères, et aux lévites, depuis l’âge de vingt ans et au-dessus, dans leurs charges, selon leurs classes ;
+et à tous leurs petits enfants, leurs femmes, et leurs fils, et leurs filles, — toute la congrégation enregistrée ; car, dans leur fidélité, ils se sanctifiaient pour être saints.
+Et pour les fils d’Aaron, les sacrificateurs, qui étaient dans la campagne, [répandus] dans les banlieues de leurs villes, il y avait dans chaque ville des hommes désignés par leur nom pour distribuer les portions à tous les mâles parmi les sacrificateurs, et à tous ceux qui étaient enregistrés parmi les lévites.
+Et Ézéchias fit ainsi dans tout Juda. Et il fit ce qui est bon, et droit, et vrai, devant l’Éternel, son Dieu.
+Et dans toute œuvre qu’il entreprit, dans le service de la maison de Dieu et dans la loi et dans les commandements, pour rechercher son Dieu, il agit de tout son cœur, et prospéra.

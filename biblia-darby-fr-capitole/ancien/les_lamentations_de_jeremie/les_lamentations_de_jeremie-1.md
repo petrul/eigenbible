@@ -1,0 +1,22 @@
+Comment est-elle assise solitaire, la ville si peuplée ! Celle qui était grande entre les nations est devenue comme veuve ; la princesse parmi les provinces est devenue tributaire.
+Elle pleure, elle pleure pendant la nuit, et ses larmes sont sur ses joues ; de tous ses amants, il n’en est pas un qui la console ; tous ses amis ont agi perfidement envers elle, ils sont pour elle des ennemis.
+Juda est allé en captivité à cause de [son] affliction et de la grandeur de [son] esclavage ; il habite parmi les nations, il n’a pas trouvé de repos ; tous ses persécuteurs l’ont atteint dans [ses] lieux resserrés.
+Les chemins de Sion mènent deuil de ce qu’il n’y a personne qui vienne aux fêtes ; toutes ses portes sont désolées ; ses sacrificateurs gémissent, ses vierges sont dans la détresse ; elle-même est dans l’amertume.
+Ses adversaires dominent, ses ennemis prospèrent ; car l’Éternel l’a affligée à cause de la multitude de ses transgressions ; ses petits enfants ont marché captifs devant l’adversaire.
+Et toute la magnificence de la fille de Sion s’est retirée d’elle. Ses princes sont comme des cerfs qui ne trouvent pas de pâture, et ils s’en sont allés sans force devant celui qui les poursuit.
+Jérusalem, dans les jours de son affliction et de son bannissement, lorsque son peuple tombait dans la main de l’ennemi et qu’il n’y avait personne qui lui aidât, s’est souvenue de toutes les choses désirables qu’elle avait dans les jours d’autrefois ; les adversaires l’ont vue, ils se sont moqués de sa ruine.
+Jérusalem a grièvement péché, c’est pourquoi elle est [rejetée] comme une impureté ; tous ceux qui l’honoraient l’ont méprisée, car ils ont vu sa nudité : elle aussi gémit et s’est retournée en arrière.
+Son impureté était aux pans de sa robe, elle ne s’est pas souvenue de sa fin ; elle est descendue prodigieusement ; il n’y a personne qui la console ! Regarde, ô Éternel, mon affliction, car l’ennemi s’est élevé avec orgueil.
+L’ennemi a étendu sa main sur toutes ses choses désirables ; car elle a vu entrer dans son sanctuaire les nations, au sujet desquelles tu avais commandé qu’elles n’entreraient point dans ta congrégation.
+Tout son peuple gémit ; ils cherchent du pain ; ils ont donné leurs choses désirables contre des aliments pour restaurer [leur] âme. Regarde, Éternel, et contemple, car je suis devenue vile.
+N’est-ce rien pour vous tous qui passez par le chemin ? Contemplez, et voyez s’il est une douleur comme ma douleur qui m’est survenue, à moi que l’Éternel a affligée au jour de l’ardeur de sa colère.
+D’en haut il a envoyé dans mes os un feu qui les a maîtrisés ; il a tendu un filet pour mes pieds, il m’a fait retourner en arrière ; il m’a mise dans la désolation, dans la langueur, tout le jour.
+Le joug de mes transgressions est lié par sa main ; elles sont entrelacées, elles montent sur mon cou ; il a fait défaillir ma force ; le Seigneur m’a livrée en des mains d’où je ne puis me relever.
+Le Seigneur a abattu tous mes hommes forts au milieu de moi ; il a convoqué contre moi une assemblée pour écraser mes jeunes gens. Le Seigneur a foulé comme au pressoir la vierge, fille de Juda.
+À cause de ces choses je pleure ; mon œil, mon œil se fond en eau ; car il est loin de moi, le consolateur qui restaurerait mon âme. Mes fils sont péris, car l’ennemi a été le plus fort.
+Sion étend ses mains, il n’y a personne qui la console. L’Éternel a commandé au sujet de Jacob que ses adversaires l’entourent ; Jérusalem est devenue au milieu d’eux une impureté.
+L’Éternel est juste ; car je me suis rebellée contre son commandement. Écoutez, je vous prie, vous tous les peuples, et voyez ma douleur : mes vierges et mes jeunes gens sont allés en captivité.
+J’ai appelé mes amants : ils m’ont trompée. Mes sacrificateurs et mes anciens ont expiré dans la ville, alors qu’ils se sont cherché de la nourriture afin de restaurer leur âme.
+Regarde, Éternel, car je suis dans la détresse ; mes entrailles sont agitées, mon cœur est bouleversé au dedans de moi, car je me suis grièvement rebellée : au dehors l’épée m’a privée d’enfants ; au dedans, c’est comme la mort.
+Ils m’ont entendue gémir : il n’y a personne qui me console ; tous mes ennemis ont appris mon malheur, ils se sont réjouis de ce que toi tu l’as fait. Tu feras venir le jour que tu as appelé, et ils seront comme moi.
+Que toute leur iniquité vienne devant toi, et fais-leur comme tu m’as fait à cause de toutes mes transgressions ; car mes gémissements sont nombreux, et mon cœur est languissant.

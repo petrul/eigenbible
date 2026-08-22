@@ -1,0 +1,38 @@
+Et le vingt-quatrième jour de ce mois, les fils d’Israël s’assemblèrent avec jeûne et vêtus de sacs, et avec de la terre sur eux.
+Et la race d’Israël se sépara de tous les fils de l’étranger ; et ils se tinrent là et confessèrent leurs péchés et les iniquités de leurs pères.
+Et ils se levèrent à leurs places, et lurent dans le livre de la loi de l’Éternel, leur Dieu, pendant un quart de la journée ; et pendant un quart, ils firent confession et se prosternèrent devant l’Éternel, leur Dieu.
+Et les lévites, Jéshua, Bani, Kadmiel, Shebania, Bunni, Shérébia, Bani, et Kenani, se levèrent sur l’estrade et crièrent à haute voix à l’Éternel, leur Dieu.
+Et les lévites, Jéshua, Kadmiel, Bani, Hashabnia, Shérébia, Hodija, Shebania et Pethakhia, dirent : Levez-vous, bénissez l’Éternel, votre Dieu, d’éternité en éternité ! Et qu’on bénisse le nom de ta gloire, qui est haut élevé au-dessus de toute bénédiction et de toute louange.
+Tu es le Même, toi seul, ô Éternel ; tu as fait les cieux, les cieux des cieux et toute leur armée, la terre et tout ce qui est sur elle, les mers et tout ce qui est en elles. Et c’est toi qui fais vivre toutes ces choses, et l’armée des cieux t’adore.
+Tu es le Même, ô Éternel, Dieu, qui as choisi Abram et l’as fait sortir d’Ur des Chaldéens, et lui as donné le nom d’Abraham.
+Et tu trouvas son cœur fidèle devant toi, et tu fis avec lui une alliance pour donner le pays du Cananéen, du Héthien, de l’Amoréen, et du Phérézien, et du Jébusien, et du Guirgasien, pour le donner a sa semence ; et tu as accompli tes paroles, car tu es juste.
+Et tu vis l’affliction de nos pères en Égypte, et tu entendis leur cri vers la mer Rouge,
+et tu opéras des signes et des prodiges sur le Pharaon, et sur tous ses serviteurs, et sur tout le peuple de son pays, car tu savais qu’ils avaient agi avec fierté contre eux, et tu t’acquis un nom comme [il paraît] aujourd’hui.
+Et tu fendis la mer devant eux, et ils passèrent à sec par le milieu de la mer ; et ceux qui les poursuivaient, tu les jetas dans les abîmes, comme une pierre dans les eaux puissantes.
+Et tu les conduisis de jour par une colonne de nuée, et de nuit par une colonne de feu, afin d’éclairer pour eux le chemin dans lequel ils devaient marcher.
+Et tu descendis sur la montagne de Sinaï, et tu parlas avec eux depuis les cieux, et tu leur donnas des ordonnances droites et des lois de vérité, de bons statuts et [de bons] commandements.
+Et tu leur fis connaître ton saint sabbat, et tu leur prescrivis des commandements et des statuts et une loi, par ton serviteur Moïse.
+Et des cieux tu leur donnas du pain pour leur faim, et tu leur fis sortir du rocher de l’eau pour leur soif, et tu leur dis d’entrer pour prendre possession du pays que tu avais juré de leur donner,
+Mais eux, savoir nos pères, agirent avec fierté, et roidirent leur cou, et n’écoutèrent pas tes commandements,
+et refusèrent d’entendre, et ne se souvinrent pas de tes merveilles que tu avais faites pour eux ; mais ils roidirent leur cou, et dans leur rébellion ils établirent un chef, pour retourner à leur servitude. Mais toi, tu es un #Dieu de pardons, faisant grâce, et miséricordieux, lent à la colère, et grand en bonté, et tu ne les as point abandonnés.
+Même quand ils se firent un veau de fonte, et dirent : C’est ici ton dieu qui t’a fait monter d’Égypte, — et qu’ils te firent de grands outrages,
+toi, dans tes grandes compassions, tu ne les abandonnas point dans le désert ; la colonne de nuée ne se retira point de dessus eux, le jour, pour les conduire dans le chemin, ni la colonne de feu, la nuit, pour les éclairer, et [leur montrer] le chemin dans lequel ils devaient marcher.
+Et tu [leur] donnas ton bon Esprit pour les rendre intelligents, et tu ne refusas pas ta manne à leur bouche, et tu leur donnas de l’eau pour leur soif.
+Et tu les entretins quarante ans dans le désert : ils ne manquèrent de rien ; leurs vêtements ne s’usèrent point, et leurs pieds n’enflèrent point.
+Et tu leur donnas des royaumes et des peuples, et tu les leur partageas par contrées, et ils prirent possession du pays de Sihon, du pays du roi de Hesbon, aussi bien que du pays d’Og, roi de Basan.
+Et tu multiplias leurs fils comme les étoiles des cieux, et tu les introduisis dans le pays dont tu avais dit à leurs pères, qu’ils y entreraient pour le posséder.
+Et leurs fils entrèrent et possédèrent le pays. Et tu subjuguas devant eux les habitants du pays, les Cananéens, et tu les livras en leur main, leurs rois et les peuples du pays, pour leur faire selon leur bon plaisir.
+Et ils prirent des villes fortifiées, et un pays gras, et ils possédèrent des maisons pleines de tout bien, des puits creusés, des vignes et des oliviers, et des arbres fruitiers en abondance ; et ils mangèrent, et furent rassasiés, et s’engraissèrent ; et ils vécurent dans les délices par ta grande bonté.
+Mais ils se rebellèrent et se révoltèrent contre toi, et jetèrent ta loi derrière leur dos, et tuèrent tes prophètes qui rendaient témoignage contre eux pour les ramener à toi, et ils te firent de grands outrages.
+Et tu les livras en la main de leurs adversaires qui les opprimèrent. Et au temps de leur détresse ils crièrent à toi, et toi, tu entendis des cieux, et selon tes grandes compassions tu leur accordas des sauveurs qui les sauvèrent de la main de leurs oppresseurs.
+Mais quand ils avaient du repos, ils recommençaient à faire le mal devant toi, et tu les abandonnais en la main de leurs ennemis, et ceux-ci dominaient sur eux. Et de nouveau ils criaient à toi, et toi, tu entendais des cieux, et tu les délivras maintes fois, selon tes compassions.
+Et tu rendis témoignage contre eux pour les ramener à ta loi ; mais ils agirent avec fierté, et n’écoutèrent pas tes commandements, et péchèrent contre tes ordonnances, par lesquelles, s’il les pratique, un homme vivra ; et ils opposèrent une épaule revêche, et roidirent leur cou, et n’écoutèrent pas.
+Et tu différas à leur égard pendant beaucoup d’années, et tu rendis témoignage contre eux par ton Esprit, par le moyen de tes prophètes ; mais ils ne prêtèrent pas l’oreille, et tu les livras en la main des peuples des pays.
+Toutefois, dans tes grandes compassions, tu n’en finis pas avec eux, et tu ne les abandonnas pas ; car tu es un Dieu faisant grâce, et miséricordieux.
+Et maintenant, notre Dieu, le Dieu grand, puissant et terrible, qui gardes l’alliance et la bonté, que ce ne soit pas peu de chose devant toi que toutes les peines qui nous ont atteints, nous, nos rois, nos princes, et nos sacrificateurs, et nos prophètes, et nos pères, et tout ton peuple, depuis les jours des rois d’Assyrie jusqu’à ce jour-ci.
+Mais tu es juste dans tout ce qui nous est survenu, car tu as agi avec vérité, et nous, nous avons agi méchamment.
+Et nos rois, nos princes, nos sacrificateurs, et nos pères, n’ont pas pratiqué ta loi, et n’ont pas été attentifs à tes commandements et à tes témoignages que tu as rendus au milieu d’eux.
+Et ils ne t’ont pas servi dans leur royaume, et dans l’abondance des biens que tu leur avais donnés, et dans le spacieux et gras pays que tu avais mis devant eux, et ils ne sont pas revenus de leurs mauvaises actions.
+Voici, nous sommes aujourd’hui serviteurs ; et quant au pays que tu donnas à nos pères pour qu’ils en mangeassent le fruit et les bons produits, voici, nous y sommes serviteurs ;
+et il rapporte beaucoup aux rois que tu as établis sur nous à cause de nos péchés ; et ils dominent à leur gré sur nos corps et sur notre bétail, et nous sommes dans une grande détresse.
+Et pour tout cela, nous faisons une ferme alliance, et nous l’écrivons. Et à l’apposition des sceaux [se trouvèrent] nos princes, nos lévites, [et] nos sacrificateurs.
