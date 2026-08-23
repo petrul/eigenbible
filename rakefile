@@ -1,3 +1,10 @@
+desc "Embed bible chapters with defaults (all bibles, Milvus backend) - for other options run"
+desc "uv run python src/embed_biblia.py --help directly (e.g. --backend local)"
 task :embed do
-    uv python 
+    sh "uv run python src/embed_biblia.py"
+end
+
+desc "Run the eigenbible test suite"
+task :test do
+    sh "uv run python -m unittest discover -s tests -v"
 end

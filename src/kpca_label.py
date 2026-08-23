@@ -22,7 +22,8 @@ import requests
 from pymilvus import DataType, MilvusClient
 from sklearn.decomposition import KernelPCA
 
-from embed_biblia import BIBLES, COMBINED_COLLECTION, MILVUS_URI, OLLAMA_URL
+from eigenbible.bibles import BIBLES, COMBINED_COLLECTION
+from eigenbible.settings import MILVUS_URI, OLLAMA_URL
 
 OLLAMA_LABEL_MODEL = "qwen3.5:4b"
 N_COMPONENTS = 50

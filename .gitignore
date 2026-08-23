@@ -1,3 +1,6 @@
 .venv/
 .env*
 __pycache__
+
+# --backend local's memory-mapped vector data (embed_biblia.py)
+vector_data/
