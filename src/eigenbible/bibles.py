@@ -12,3 +12,7 @@ BIBLES = {
     "darby": ("biblia-darby-fr-capitole", "biblia_darby_fr_subcapitole"),
 }
 COMBINED_COLLECTION = "biblia_all_subcapitole"
+
+# collection name -> bible key, for collections holding a single bible's
+# chapters (the combined collection instead carries a 'bible' field per row).
+COLLECTION_TO_BIBLE = {collection: key for key, (_dirname, collection) in BIBLES.items()}
