@@ -6,9 +6,8 @@ import requests
 from pymilvus import DataType, MilvusClient
 
 
-OLLAMA_URL = "http://zmeu.local:11434"
 OLLAMA_MODEL = "qwen3-embedding:4b"
-MILVUS_URI = "http://zmeu.local:19530"
+
 
 # key -> (source directory name under this file, Milvus collection to store its vectors in)
 BIBLES = {

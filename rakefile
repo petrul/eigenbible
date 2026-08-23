@@ -1,0 +1,3 @@
+task :embed do
+    uv python 
+end

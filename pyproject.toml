@@ -1,0 +1,26 @@
+[project]
+name = "eigenbible"
+version = "0.1.0"
+description = "The Eigenbible"
+readme = "README.md"
+authors = [
+    { name = "Petru Dimulescu", email = "petru.dimulescu@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.11.1",
+    "numpy>=2.5.2",
+    "pandas>=3.0.5",
+    "pymilvus>=2.6.0",
+    "pydantic-settings>=2.15.0",
+    "requests>=2.34.2",
+    "scikit-learn>=1.9.0",
+    "torch>=2.13.0",
+]
+
+[project.scripts]
+eigenbible = "eigenbible:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
