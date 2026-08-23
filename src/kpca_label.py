@@ -27,7 +27,7 @@ from eigenbible.label_results_store import LabelResultsStore
 from eigenbible.nearest_neighbour_search import MilvusNearestNeighbourSearch
 from eigenbible.neighbourhood_strategy import AnchorKNNNeighbourhoodStrategy, TopProjectionNeighbourhoodStrategy
 from eigenbible.settings import MILVUS_URI, OLLAMA_URL
-from eigenbible.summarizer import ChapterSummarizer
+from eigenbible.summarizer import ChapterSummarizer, ShuffledLinesSummarizer
 from eigenbible.vector_collection_reader import VectorCollectionReader
 
 OLLAMA_LABEL_MODEL = "qwen3.5:4b"
@@ -61,6 +61,14 @@ def main() -> None:
             "the single most extreme chapter on each axis."
         ),
     )
+    parser.add_argument(
+        "--summarizer", choices=["excerpt", "shuffled-lines"], default="excerpt",
+        help=(
+            "excerpt (default): label each neighbour chapter's own text kept intact and "
+            "separate. shuffled-lines: pool every neighbour's lines together and shuffle "
+            "them first, so the label can't lean on chapter boundaries/narrative order."
+        ),
+    )
     parser.add_argument("--ollama-model", default=OLLAMA_LABEL_MODEL)
     parser.add_argument("--milvus-uri", default=MILVUS_URI)
     parser.add_argument("--ollama-url", default=OLLAMA_URL)
@@ -78,11 +86,13 @@ def main() -> None:
     else:
         strategy = TopProjectionNeighbourhoodStrategy(k=args.neighbours)
 
+    summarizer_cls = ShuffledLinesSummarizer if args.summarizer == "shuffled-lines" else ChapterSummarizer
+
     labeler = KPCALabeler(
         reader=VectorCollectionReader(client, args.collection),
         text_resolver=ChapterTextResolver(PROJECT_ROOT),
         strategy=strategy,
-        summarizer=ChapterSummarizer(args.ollama_url, args.ollama_model),
+        summarizer=summarizer_cls(args.ollama_url, args.ollama_model),
         results_store=LabelResultsStore(client, results_collection),
         n_components=args.components,
         kernel=args.kernel,

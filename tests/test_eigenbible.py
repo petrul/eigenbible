@@ -24,10 +24,14 @@ from eigenbible.embedder import OllamaEmbedder
 from eigenbible.importer import BibliaEmbeddingImporter
 from eigenbible.markdown_reader import MarkdownFileReader
 from eigenbible.settings import MILVUS_URI, OLLAMA_URL
+from eigenbible.summarizer import ChapterSummarizer, ShuffledLinesSummarizer
 from eigenbible.vector_store import LocalDiskVectorStore
 
 RES_DIR = Path(__file__).parent / "res"
 TEST_EMBED_MODEL = "nomic-embed-text:v1.5"  # small/fast - keeps the real network test quick
+TEST_LABEL_MODEL = "qwen2.5vl:3b"  # small, coherent, and (unlike the qwen3.5 family) not a
+# hybrid-reasoning model, so no risk of burning the whole generation budget on hidden
+# "thinking" output the way qwen3.5:2b/4b did when tried here
 
 
 def has_ollama() -> bool:
@@ -122,6 +126,88 @@ class LocalDiskCollectionMergerTests(TempDirTestCase):
             [("a1", "bible_a"), ("a2", "bible_a"), ("b1", "bible_b")],
         )
         self.assertEqual(vectors.shape, (3, 2))
+
+
+class ChapterSummarizerTests(unittest.TestCase):
+    def test_prompt_keeps_each_passage_intact_and_separate_up_to_the_snippet_budget(self):
+        summarizer = ChapterSummarizer("http://example.invalid", "fake-model")
+        prompt = summarizer._build_prompt(["short text", "x" * (ChapterSummarizer.SNIPPET_CHARS + 50)])
+
+        self.assertIn("short text", prompt)
+        self.assertIn("x" * ChapterSummarizer.SNIPPET_CHARS, prompt)
+        self.assertNotIn("x" * (ChapterSummarizer.SNIPPET_CHARS + 1), prompt)  # truncated, not the full run
+        self.assertIn("---", prompt)  # passages kept separate
+
+
+class ShuffledLinesSummarizerTests(unittest.TestCase):
+    def test_prompt_contains_every_non_blank_line_from_every_text(self):
+        summarizer = ShuffledLinesSummarizer("http://example.invalid", "fake-model")
+        texts = ["line a\nline b\n\n", "line c\n   \nline d"]
+        prompt = summarizer._build_prompt(texts)
+
+        for line in ["line a", "line b", "line c", "line d"]:
+            self.assertIn(line, prompt)
+        self.assertIn("random sequences", prompt)
+
+    def test_caps_the_number_of_lines_at_max_lines(self):
+        summarizer = ShuffledLinesSummarizer("http://example.invalid", "fake-model")
+        many_lines = "\n".join(f"line {i}" for i in range(ShuffledLinesSummarizer.MAX_LINES + 20))
+        prompt = summarizer._build_prompt([many_lines])
+
+        _instructions, shuffled_block, _label_trailer = prompt.split("\n\n")
+        self.assertEqual(len(shuffled_block.splitlines()), ShuffledLinesSummarizer.MAX_LINES)
+
+    def test_blank_lines_are_dropped(self):
+        summarizer = ShuffledLinesSummarizer("http://example.invalid", "fake-model")
+        prompt = summarizer._build_prompt(["a\n\n\n   \nb"])
+        _instructions, shuffled_block, _label_trailer = prompt.split("\n\n")
+        self.assertEqual(sorted(shuffled_block.splitlines()), ["a", "b"])
+
+
+@unittest.skipUnless(has_ollama(), "Ollama not reachable")
+class LabelStabilityTests(unittest.TestCase):
+    """Runs the labelling step for one fixed component's neighbourhood (the
+
+    same texts every time - the two tests/res/ fixture chapters stand in for
+    one eigenvector's retrieved neighbours) several times over, embeds each
+    resulting label, and checks the embeddings are close to each other by
+    cosine similarity. Wording/sampling can vary run to run, but a stable
+    labelling process should still land on a semantically similar gist each
+    time given the same input. Small/fast models throughout (nomic-embed-text
+    for embedding, qwen2.5:0.5b for labelling) so this stays quick to run
+    routinely.
+    """
+
+    N_RUNS = 3
+    MIN_PAIRWISE_COSINE_SIMILARITY = 0.5
+
+    @staticmethod
+    def _cosine_similarity(a, b) -> float:
+        a, b = np.asarray(a), np.asarray(b)
+        return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
+
+    def test_repeated_labelling_of_the_same_neighbourhood_is_semantically_stable(self):
+        reader = MarkdownFileReader(RES_DIR)
+        texts = [reader.read(f) for f in reader.files()]
+
+        summarizer = ChapterSummarizer(OLLAMA_URL, TEST_LABEL_MODEL)
+        labels = [summarizer.label(texts) for _ in range(self.N_RUNS)]
+        for label in labels:
+            self.assertTrue(label, "expected a non-empty label")
+
+        embedder = OllamaEmbedder(OLLAMA_URL, TEST_EMBED_MODEL)
+        embeddings = embedder.embed_batch(labels)
+
+        similarities = [
+            self._cosine_similarity(embeddings[i], embeddings[j])
+            for i in range(len(embeddings))
+            for j in range(i + 1, len(embeddings))
+        ]
+        self.assertTrue(
+            all(s >= self.MIN_PAIRWISE_COSINE_SIMILARITY for s in similarities),
+            f"labels weren't semantically stable across {self.N_RUNS} repeats: "
+            f"{labels} (pairwise cosine similarities={similarities})",
+        )
 
 
 @unittest.skipUnless(has_ollama(), "Ollama not reachable")
