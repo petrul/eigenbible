@@ -1,20 +1,28 @@
-"""App-wide settings, loaded from the environment / .env (via pydantic-settings,
+"""App-wide settings and service endpoints.
 
-already a project dependency for exactly this). Exposed both as a Settings
-instance and as plain module-level constants (OLLAMA_URL, MILVUS_URI) for
-existing callers (kpca_label.py) that just want the string values.
+Qdrant on zmeu and biblioteca.scriptorium.ro are hardwired as constants for now,
+with Ollama URL still configurable via `.env` (via pydantic-settings) and
+defaulting to zmeu so purely offline local-FAISS workflows never fail at import
+time.
 """
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+QDRANT_URL = "http://zmeu.local:6333"
+QDRANT_COLLECTION = "biblioteca_paragraphs_bge_m3"
+QDRANT_VECTOR_NAME = "embedding"
+BIBLIOTECA_BASE_URL = "https://biblioteca.scriptorium.ro"
+OLLAMA_EMBED_MODEL = "bge-m3:567m-fp16"
+DEFAULT_OLLAMA_URL = "http://zmeu.local:11434"
 
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    ollama_url: str
-    milvus_uri: str
+    ollama_url: str = DEFAULT_OLLAMA_URL
+    qdrant_url: str = QDRANT_URL
+    ollama_embed_model: str = OLLAMA_EMBED_MODEL
 
 
 settings = Settings()
 
 OLLAMA_URL = settings.ollama_url
-MILVUS_URI = settings.milvus_uri

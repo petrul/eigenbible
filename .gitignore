@@ -3,5 +3,7 @@
 !.env.example
 __pycache__
 
-# --backend local's memory-mapped vector data (embed_biblia.py)
+# Local vector datasets (FAISS / memmap) and generated reports
 vector_data/
+data/
+eigenbooks_synthesis.xhtml

@@ -1,126 +1,183 @@
 # The Eigenbible
 
-kPCA on the Bible and such.
+Unsupervised spectral decomposition (**PCA**, **Kernel PCA**) and density/topic clustering (**HDBSCAN**, **BERTopic**) over literary vector databases — both parallel Bible translations and historical works from [`biblioteca.scriptorium.ro`](https://biblioteca.scriptorium.ro).
 
-Embeds every chapter of two parallel bible translations, fits a Kernel PCA
-over the embeddings, and asks an LLM to name the shared theme of each
-resulting axis - a "what are the eigen-directions of meaning in this text"
-experiment.
+All datasets are stored locally as self-contained **FAISS** indexes (`index.faiss` + `records.jsonl` + `meta.json` + optional plain-text chapters) using 1024-D `bge-m3:567m-fp16` embeddings, making it effortless to load exact `(N, 1024)` `float32` matrices directly into NumPy / scikit-learn for linear algebra and metric-learning experiments (PCA, kPCA, NCA, LMNN, SVD, UMAP, HDBSCAN, BERTopic).
 
-## Pipeline
+---
 
+## Architecture
+
+```text
+  Qdrant (zmeu:6333) + biblioteca.scriptorium.ro  ──▶  src/download_biblioteca.py  ──┐
+                                                                                     ▼
+  Local Markdown chapters (biblia-*-capitole/)    ──▶  src/embed_biblia.py        ──▶  data/<work>/ (FAISS + JSONL + meta)
+                                                                                          │
+                                                             ┌────────────────────────────┴────────────────────────────┐
+                                                             ▼                                                         ▼
+                                                   src/kpca_label.py                                         src/cluster_topics.py
+                                               (PCA / Kernel PCA + LLM axes)                                (HDBSCAN + BERTopic + LLM)
+                                                             │                                                         │
+                                                             └────────────────────────────┬────────────────────────────┘
+                                                                                          ▼
+                                                                             data/<work>/results/*.jsonl & *.md
 ```
-tb-export-biblia-ortdx.py  ->  embed_biblia.py  ->  kpca_label.py
-   (scrape chapters)          (chapter -> vector)   (vectors -> labelled axes)
-```
 
-1. **`tb-export-biblia-ortdx.py`** scrapes a bible translation off
-   textbase.scriptorium.ro into per-chapter markdown files (already run;
-   see `biblia-ortdx-capitole/` and `biblia-darby-fr-capitole/`).
-2. **`embed_biblia.py`** embeds every chapter with an Ollama embedding model
-   and stores the vectors - either in Milvus, or in a local disk
-   memory-mapped format that needs no server (`--backend local`).
-3. **`kpca_label.py`** pulls the vectors back out of a Milvus collection,
-   fits a `KernelPCA`, and for each component asks an Ollama chat model to
-   name the theme shared by the chapters that characterize that axis.
+### Key Design Choices
+- **FAISS flat indexes (`IndexFlatIP` / `IndexFlatL2`)**: Because `bge-m3` vectors are unit-normalized ($\|v\|_2 = 1$), `IndexFlatIP` gives exact cosine kNN search *and* lossless `(N, D)` NumPy matrix reconstruction via `index.reconstruct_n(0, N)` without duplicating vector storage on disk.
+- **No Milvus**: All storage, reading, merging, and search paths use **FAISS** (local) or **Qdrant** (remote on `zmeu.local:6333`).
+- **SHA-256 verified downloads**: Qdrant's `biblioteca_paragraphs_bge_m3` collection stores `{opus_path, url, sha256}` + the 1024-D `embedding` vector; `download_biblioteca.py` fetches each paragraph's `.txt` from `biblioteca.scriptorium.ro`, verifies its SHA-256 digest against Qdrant bit-for-bit, orders paragraphs by `(section, paragraph_num)`, and re-aligns vectors identically.
+- **Reusable abstractions**: `VectorDataset`, `VectorStore`, `VectorDatasetReader`, `NearestNeighbourSearch`, `TextResolver`, `DimensionalityReducer`, `NeighbourhoodStrategy`, `Summarizer`, and `ResultsStore` decouple storage from math and LLM labelling.
 
-## Requirements
+---
 
-- Python `>=3.12` (`.python-version`), managed with [uv](https://docs.astral.sh/uv/).
-- An [Ollama](https://ollama.com) server with an embedding-capable model
-  (e.g. `qwen3-embedding:4b`, or the much smaller/faster `nomic-embed-text`
-  for quick experiments) and a chat model for labelling (e.g. `qwen3.5:4b`).
-- [Milvus](https://milvus.io) - only if you want `embed_biblia.py`'s default
-  `--backend milvus`, or to run `kpca_label.py` at all (it currently only
-  reads from Milvus, not the local disk backend).
+## Requirements & Setup
+
+- **Python** `>=3.12` (managed with [uv](https://docs.astral.sh/uv/)).
+- **Qdrant** at `http://zmeu.local:6333` (hardwired in `eigenbible.settings.QDRANT_URL`; collection `biblioteca_paragraphs_bge_m3`).
+- **Ollama** at `http://zmeu.local:11434` (configured via `.env` `OLLAMA_URL`, defaults to `http://zmeu.local:11434`):
+  - Default embedding model: `bge-m3:567m-fp16` (1024-D, matching Qdrant's `biblioteca_paragraphs_bge_m3`).
+  - Default chat/labelling model: `qwen3.5:4b` (invoked with `think=False` so it outputs crisp labels directly).
 
 ```bash
 uv sync
-cp .env.example .env   # if starting fresh; fill in your OLLAMA_URL/MILVUS_URI
+cp .env.example .env
 ```
 
-`OLLAMA_URL`/`MILVUS_URI` are never hardcoded in source - both scripts load
-them from `.env` via `eigenbible.settings` (pydantic-settings).
+---
 
 ## Usage
 
+### 1. Download Biblioteca works from Qdrant into local FAISS datasets
+
+Built-in presets in `src/eigenbible/qdrant_downloader.py`:
+- `gesta_hungarorum` → `trad/gesta_hungarorum_la` (122 Latin paragraphs, 60 sections)
+- `ureche_letopisetul` → `ureche/letopisetul_tarii_moldovei` (715 Romanian paragraphs, 244 sections)
+- `miron_letopisetul` → `costin/letopisetul_tarii_moldovei` (623 Romanian paragraphs, 26 sections)
+- `creanga_amintiri` → `creanga/amintiri_din_copilarie` (401 Romanian paragraphs, 5 sections)
+- `london_white_fang` → `london/white_fang` (1,080 English paragraphs)
+- `hugo_notre_dame` → `hugo/notre_dame_de_paris` (2,908 French paragraphs)
+- `hugo_notre_dame_en` → `hugo/notre_dame_de_paris_2` (3,956 English paragraphs)
+
 ```bash
-# embed both bibles into Milvus (default), then rebuild the combined collection
-uv run python src/embed_biblia.py --combine
-# or: rake embed
+# Download all three preset works into data/<work>/
+uv run python src/download_biblioteca.py
+# or: rake download
 
-# embed into a local memory-mapped store instead - no Milvus needed
-uv run python src/embed_biblia.py --backend local --local-dir ./vector_data
+# Download a single preset
+uv run python src/download_biblioteca.py --work gesta_hungarorum
 
-# just one bible, or skip straight to --combine
-uv run python src/embed_biblia.py --bible darby
-uv run python src/embed_biblia.py --bible none --combine
-
-# fit a kernel PCA over a collection and label 50 components (default)
-uv run python src/kpca_label.py --collection biblia_all_subcapitole
-
-# fewer components, a different kernel/strategy, for a quick look
-uv run python src/kpca_label.py -c biblia_ortodoxa_subcapitole -n 5 --strategy anchor-knn
+# Download any arbitrary opus_path from Qdrant
+uv run python src/download_biblioteca.py --opus-path neculce/o_sama_de_cuvinte --name neculce
 ```
 
-Run either script with `--help` for the full option list (output format,
-page/component counts, model/host overrides, etc).
+Each exported dataset under `data/<work>/` contains:
+- `index.faiss` — flat FAISS index (`IndexFlatIP`, cosine)
+- `records.jsonl` — one JSON record per row (`row_idx`, `id`, `opus_path`, `section`, `paragraph_num`, `url`, `sha256`, `sha256_verified`, `text`)
+- `meta.json` — provenance & schema (`name`, `dimension`, `total_rows`, `metric`, `embedding_model`, `opus_path`, `sha256_mismatches`)
+- `texts/` — human-readable per-section `.txt` files
 
-### Labelling strategies (`kpca_label.py --strategy`)
+### 2. Embed local Markdown corpora (Romanian Orthodox & French Darby Bibles)
 
-Each kPCA component is a numeric axis; before it can be labelled, some
-chapters have to be picked to represent it and read back to an LLM. The two
-strategies differ in *which* chapters get picked, and in what they cost:
+```bash
+# Embed both Bibles into local FAISS under data/ (default model: bge-m3:567m-fp16)
+uv run python src/embed_biblia.py --backend faiss --data-dir data
+# or: rake embed
 
-- **`top-projection`** (default). For each component, ranks every chapter by
-  its score on that axis and takes the K highest-scoring and, separately,
-  the K lowest-scoring. A kPCA axis is a contrast between two poles, not a
-  single point - "K chapters that lean hardest one way" and "K that lean
-  hardest the other way" - so this produces **two labels per component**,
-  one per pole (`sign: "+"` / `"-"` in the results). Purely arithmetic on
-  the projections `KernelPCA.fit_transform` already computed - no extra
-  round-trip to Milvus, and the chapters are guaranteed to be the ones that
-  actually define that specific axis.
+# Also build the combined bilingual collection (no re-embedding)
+uv run python src/embed_biblia.py --backend faiss --data-dir data --combine
 
-- **`anchor-knn`**. Finds the single chapter that sits furthest out on the
-  axis (in either direction) and asks Milvus for that chapter's K nearest
-  neighbours - but in the *original* embedding space, not kPCA space. One
-  Milvus search per component, **one label per component**. Cheaper on
-  Ollama calls (half as many labelling requests as `top-projection` for the
-  same K), but the neighbours are only "generally close to the anchor" in
-  the full embedding, not necessarily the chapters that score highest on
-  *this specific* axis - a weaker signal for the less-dominant/later
-  components, where an axis's direction can diverge more from raw embedding
-  similarity.
+# Embed into Qdrant or raw numpy memmap instead
+uv run python src/embed_biblia.py --backend qdrant --combine
+uv run python src/embed_biblia.py --backend local --data-dir vector_data
+```
 
-In short: `top-projection` is the more faithful/expensive default; try
-`anchor-knn` for a quicker, rougher pass, or if you specifically want the
-labelling to reflect embedding-space similarity rather than the kPCA
-projection itself.
+### 3. Discover & label latent axes (PCA & Kernel PCA)
 
-## Project layout
+```bash
+# Linear PCA (top 8 components, both + and - poles labelled by Ollama)
+uv run python src/kpca_label.py --dataset data/gesta_hungarorum --method pca -n 8 -k 6
 
-- **`embed_biblia.py`** / **`kpca_label.py`** - thin CLI entry points; the
-  actual logic lives under `src/eigenbible/`:
-  - `settings.py` - `.env`-backed `OLLAMA_URL`/`MILVUS_URI`
-  - `bibles.py` - which bibles exist, their source dirs/collection names
-  - `markdown_reader.py`, `embedder.py` - chapter files -> Ollama embeddings
-  - `vector_store.py` - `MilvusVectorStore` / `LocalDiskVectorStore`
-  - `collection_merger.py` - rebuilds the combined collection from the
-    per-bible ones without re-embedding
-  - `importer.py` - drives embed_biblia.py's per-chapter embed-and-store loop
-  - `vector_collection_reader.py`, `chapter_text_resolver.py`,
-    `nearest_neighbour_search.py` - kpca_label.py's Milvus/disk plumbing
-  - `neighbourhood_strategy.py` - which chapters characterize a component
-    (`top-projection` / `anchor-knn`)
-  - `summarizer.py` - asks Ollama to name a component's shared theme
-  - `label_results_store.py` - where labelled components get written
-  - `kpca_labeler.py` - `KPCALabeler`, the kpca_label.py pipeline itself
-- **`tb-export-biblia-ortdx.py`** - the scraper that produced
-  `biblia-ortdx-capitole/`/`biblia-darby-fr-capitole/`
-- **`src/play/`** - exploratory scratch scripts, not part of the pipeline
-- **`biblia-ortdx-capitole/`**, **`biblia-darby-fr-capitole/`** - the two
-  bible translations, one markdown file per chapter
+# Cosine Kernel PCA
+uv run python src/kpca_label.py --dataset data/gesta_hungarorum --method kpca --kernel cosine -n 8 -k 6
+
+# Works identically on the chronicles and both Bibles
+uv run python src/kpca_label.py --dataset data/ureche_letopisetul --method pca -n 10
+uv run python src/kpca_label.py --dataset data/ureche_letopisetul --method kpca --kernel cosine -n 10
+uv run python src/kpca_label.py --dataset data/miron_letopisetul --method pca -n 10
+uv run python src/kpca_label.py --dataset data/biblia_ortodoxa_subcapitole --method kpca --kernel cosine -n 10
+uv run python src/kpca_label.py --dataset data/biblia_darby_fr_subcapitole --method pca -n 10
+
+# Alternative neighbourhood & summarization strategies
+uv run python src/kpca_label.py --dataset data/gesta_hungarorum --method pca --strategy anchor-knn
+uv run python src/kpca_label.py --dataset data/gesta_hungarorum --method pca --summarizer shuffled-lines
+```
+
+#### Axis-labelling strategies
+- **`top-projection`** *(default)*: Ranks every passage along component $j$, takes the top $K$ positive and top $K$ negative projections, and asks the LLM to name each pole (`+` / `-`) separately. Purely algebraic on the projection matrix; reveals the thematic *contrast* defining each eigen-axis.
+- **`anchor-knn`**: Picks the single most extreme passage on component $j$ and queries FAISS/Qdrant for its $K$ nearest neighbours in the original 1024-D embedding space. Produces one label per component.
+
+### 4. Cluster topics (HDBSCAN & BERTopic)
+
+Both algorithms reuse the precomputed `bge-m3` embeddings stored in FAISS (zero re-embedding, zero HuggingFace model downloads):
+
+```bash
+# Run both HDBSCAN and BERTopic (default: UMAP 5D cosine pre-reduction + HDBSCAN eom)
+uv run python src/cluster_topics.py --dataset data/ureche_letopisetul --algorithm both --min-cluster-size 12
+uv run python src/cluster_topics.py --dataset data/miron_letopisetul --algorithm both --min-cluster-size 12
+uv run python src/cluster_topics.py --dataset data/biblia_ortodoxa_subcapitole --algorithm both --min-cluster-size 15
+uv run python src/cluster_topics.py --dataset data/biblia_darby_fr_subcapitole --algorithm both --min-cluster-size 15
+
+# Fine-grained leaf selection (recommended for small corpora or corpora with outlier colophons like Gesta)
+uv run python src/cluster_topics.py --dataset data/gesta_hungarorum --algorithm both \
+  --min-cluster-size 5 --cluster-selection-method leaf
+
+# Fast numeric-only run without Ollama labelling
+uv run python src/cluster_topics.py --dataset data/gesta_hungarorum --algorithm hdbscan --no-llm
+```
+
+### 5. Interactive NumPy / Linear Algebra Playground
+
+Load any local FAISS dataset directly into NumPy for `PCA`, `KernelPCA`, `NCA`, `LMNN`, `SVD`, Procrustes alignment, or custom experiments:
+
+```python
+from eigenbible.vector_collection_reader import FaissCollectionReader
+
+reader = FaissCollectionReader("data/gesta_hungarorum")
+ds = reader.fetch_dataset()
+
+X = ds.vectors                  # np.ndarray, shape (122, 1024), float32
+texts = ds.texts()              # list[str]
+index = reader.index            # faiss.IndexFlatIP for instant kNN
+
+# Example: drop Wikisource 'about' colophon before SVD / NCA / LMNN
+narrative = VectorDataset_or_filtered = ds.filter_by(sha256_verified=True)
+```
+
+---
+
+## Project Layout
+
+- **`src/eigenbible/`** — reusable library:
+  - `settings.py` — `QDRANT_URL`, `QDRANT_COLLECTION`, `QDRANT_VECTOR_NAME`, `BIBLIOTECA_BASE_URL`, `OLLAMA_EMBED_MODEL`, `OLLAMA_URL`
+  - `dataset.py` — `VectorDataset` container (`records`, `vectors`, `meta`, `filter_by`, `normalized_vectors`)
+  - `vector_store.py` — `VectorStore` ABC (`FaissVectorStore`, `QdrantVectorStore`, `LocalDiskVectorStore`)
+  - `vector_collection_reader.py` — `VectorDatasetReader` ABC (`FaissCollectionReader`, `QdrantCollectionReader`, `LocalDiskCollectionReader`)
+  - `nearest_neighbour_search.py` — `NearestNeighbourSearch` ABC (`FaissNearestNeighbourSearch`, `QdrantNearestNeighbourSearch`)
+  - `collection_merger.py` — `CollectionMerger` ABC (`FaissCollectionMerger`, `QdrantCollectionMerger`, `LocalDiskCollectionMerger`)
+  - `chapter_text_resolver.py` — `TextResolver` ABC (`InlineTextResolver`, `ChapterTextResolver`)
+  - `qdrant_downloader.py` — Qdrant + `biblioteca.scriptorium.ro` SHA-256-verified dataset exporter
+  - `reducers.py` — `DimensionalityReducer` ABC (`PCAReducer`, `KPCAReducer`, `build_reducer`)
+  - `neighbourhood_strategy.py` — `TopProjectionNeighbourhoodStrategy`, `AnchorKNNNeighbourhoodStrategy`
+  - `summarizer.py` — `ChapterSummarizer` (alias `ExcerptSummarizer`), `ShuffledLinesSummarizer`
+  - `label_results_store.py` — `ResultsStore` ABC (`JsonlResultsStore` + Markdown report renderers)
+  - `kpca_labeler.py` — `AxisLabeler` (alias `KPCALabeler`)
+  - `clusterer.py` — `HDBSCANClusterer`, `BERTopicClusterer`
+  - `bibles.py`, `markdown_reader.py`, `embedder.py`, `importer.py` — Bible corpus registry and Ollama batch importer
+- **Thin CLIs**: `src/download_biblioteca.py`, `src/embed_biblia.py`, `src/kpca_label.py`, `src/cluster_topics.py`, `src/tb-export-biblia-ortdx.py`
+- **Tests**: `tests/test_eigenbible.py`, `tests/test_storage_and_qdrant.py`, `tests/test_downloader_and_analysis.py`
+
+---
 
 ## Tests
 
@@ -129,6 +186,4 @@ rake test
 # or: uv run python -m unittest discover -s tests -v
 ```
 
-Fast, fixture-based unit tests for the local disk vector store/merger, plus
-a real (non-mocked) Ollama embedding call using a small model
-(`nomic-embed-text`) so it stays quick to run routinely.
+45 tests total (43 fast offline unit tests covering FAISS/Qdrant stores, readers, mergers, kNN search, URL parsing, SHA-256 downloader/alignment, PCA/kPCA reducers, `AxisLabeler`, HDBSCAN, BERTopic, and summarizers; plus 2 live-Ollama integration tests that auto-skip when Ollama is unreachable).

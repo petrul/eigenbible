@@ -1,10 +1,36 @@
-desc "Embed bible chapters with defaults (all bibles, Milvus backend) - for other options run"
-desc "uv run python src/embed_biblia.py --help directly (e.g. --backend local)"
+CMS_DIR = ENV.fetch("CMS_DIR", "/home/petru/work/scriptorium.ro/scriptorium-blog-cms")
+
+desc "Embed bible chapters with defaults (all bibles, FAISS backend)"
 task :embed do
-    sh "uv run python src/embed_biblia.py"
+  sh "uv run python src/embed_biblia.py"
+end
+
+desc "Download Biblioteca works from Qdrant into local FAISS datasets (excluding headings & <100-char rows)"
+task :download do
+  sh "uv run python src/download_biblioteca.py"
+end
+
+desc "Filter section headings (_1), 'about/' colophons, and <100-char rows from existing Biblioteca FAISS datasets"
+task :clean_corpora do
+  sh "uv run python scripts/rebuild_and_publish.py --clean --skip-analyze --skip-publish"
+end
+
+desc "Re-run PCA, RBF kPCA, HDBSCAN, and BERTopic on the 7 Biblioteca corpora (leaving Bibles untouched)"
+task :analyze_biblioteca do
+  sh "uv run python scripts/rebuild_and_publish.py --skip-publish"
+end
+
+desc "Regenerate standalone eigenbooks_synthesis.xhtml and export post + JSON widgets into scriptorium-blog-cms"
+task :export_blog do
+  sh "uv run python src/build_blog_report.py --cms-dir #{CMS_DIR}"
+end
+
+desc "Full pipeline: clean Biblioteca corpora, re-run analyses, rebuild XHTML, and import into scriptorium-blog-cms"
+task :publish do
+  sh "uv run python scripts/rebuild_and_publish.py --clean --cms-dir #{CMS_DIR}"
 end
 
 desc "Run the eigenbible test suite"
 task :test do
-    sh "uv run python -m unittest discover -s tests -v"
+  sh "uv run python -m unittest discover -s tests -v"
 end

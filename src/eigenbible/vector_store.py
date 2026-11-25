@@ -1,104 +1,255 @@
-"""Vector storage backends for embedded bible chapters: Milvus (remote vector
+"""Vector storage backends: FAISS (local index + JSONL records), Qdrant (remote
+vector DB), and LocalDisk (raw numpy memmap).
 
-DB) or a local disk memory-mapped format, selected via --backend on the
-embed_biblia CLI. Both implement VectorStore's insert_batch(file_names,
-vectors), so BibliaEmbeddingImporter doesn't need to know which one it's
-writing to.
+All three implement VectorStore's insert_batch(...) interface so importers,
+downloaders, and collection mergers can target any backend cleanly.
 """
 import json
 import logging
+import uuid
 from abc import ABC, abstractmethod
 from pathlib import Path
+from typing import Any
 
+import faiss
 import numpy as np
-from pymilvus import DataType, MilvusClient
+from qdrant_client import QdrantClient
+from qdrant_client.models import Distance, PointStruct, VectorParams
+
+from .dataset import VectorDataset
 
 logger = logging.getLogger(__name__)
 
 
 class VectorStore(ABC):
-    """Common interface both backends implement, so BibliaEmbeddingImporter
-
-    (and CollectionMerger) can write to either without knowing which."""
+    """Common write interface implemented by all vector storage backends."""
 
     @abstractmethod
-    def insert_batch(self, file_names: list[str], vectors: list[list[float]]) -> None: ...
+    def insert_batch(
+        self,
+        file_names: list[str],
+        vectors: list[list[float]] | np.ndarray,
+        extra_fields: list[dict[str, Any]] | None = None,
+    ) -> None: ...
+
+    def close(self) -> None:
+        """Flush and finalize any open files/indexes."""
 
 
-def create_milvus_collection(client: MilvusClient, name: str, dimension: int, extra_varchar_fields=()) -> None:
-    """Create a collection with a 'file_name' field, an optional set of extra VARCHAR fields
-    (e.g. a 'bible' discriminator), and a COSINE index on the vector field - built as part of
-    collection creation so it's searchable/loadable right away rather than needing a separate
-    create_index step before it can be loaded."""
-    schema = client.create_schema(auto_id=True, enable_dynamic_field=False)
-    schema.add_field(field_name="id", datatype=DataType.INT64, is_primary=True)
-    schema.add_field(field_name="vector", datatype=DataType.FLOAT_VECTOR, dim=dimension)
-    schema.add_field(field_name="file_name", datatype=DataType.VARCHAR, max_length=1024)
-    for field_name in extra_varchar_fields:
-        schema.add_field(field_name=field_name, datatype=DataType.VARCHAR, max_length=64)
+class FaissVectorStore(VectorStore):
+    """Stores a collection as a flat FAISS index plus parallel JSONL metadata.
 
-    index_params = client.prepare_index_params()
-    index_params.add_index(field_name="vector", index_type="AUTOINDEX", metric_type="COSINE")
+    Layout under <directory>/<collection_name>/:
+        index.faiss   - faiss.IndexFlatIP (cosine) or IndexFlatL2 (l2)
+        records.jsonl - one JSON object per row, aligned 1-to-1 with FAISS row index
+        meta.json     - collection metadata (dimension, total_rows, metric, model, ...)
 
-    client.create_collection(collection_name=name, schema=schema, index_params=index_params)
+    Using a flat FAISS index keeps exact uncompressed float32 vectors, giving
+    both fast FAISS kNN search and zero-duplication `(N, D)` NumPy matrix
+    reconstruction via `index.reconstruct_n(0, N)` for linear algebra (PCA,
+    kPCA, NCA, LMNN, HDBSCAN, BERTopic).
+    """
 
+    INDEX_FILENAME = "index.faiss"
+    RECORDS_FILENAME = "records.jsonl"
+    META_FILENAME = "meta.json"
 
-class MilvusVectorStore(VectorStore):
-    def __init__(self, uri: str, collection_name: str):
-        logger.info("Connecting to Milvus at %s (collection '%s')", uri, collection_name)
-        self.client = MilvusClient(uri=uri)
+    def __init__(
+        self,
+        directory: Path,
+        collection_name: str,
+        metric: str = "cosine",
+        meta: dict[str, Any] | None = None,
+    ):
         self.collection_name = collection_name
+        self.directory = Path(directory) / collection_name
+        self.directory.mkdir(parents=True, exist_ok=True)
+        self.metric = metric
+        self.extra_meta = dict(meta or {})
+        self.dimension: int | None = None
+        self._index: faiss.Index | None = None
+        self._records: list[dict[str, Any]] = []
+        logger.info(
+            "Using FAISS vector store at %s (collection '%s', metric=%s)",
+            self.directory, collection_name, metric,
+        )
+
+    def _ensure_index(self, dimension: int) -> None:
+        if self._index is not None:
+            return
+        self.dimension = dimension
+        if self.metric == "cosine":
+            self._index = faiss.IndexFlatIP(dimension)
+        elif self.metric == "l2":
+            self._index = faiss.IndexFlatL2(dimension)
+        else:
+            raise ValueError(f"Unsupported FAISS metric: {self.metric!r} (expected 'cosine' or 'l2')")
+
+    def insert_batch(
+        self,
+        file_names: list[str],
+        vectors: list[list[float]] | np.ndarray,
+        extra_fields: list[dict[str, Any]] | None = None,
+    ) -> None:
+        if len(file_names) == 0:
+            return
+        matrix = np.ascontiguousarray(np.asarray(vectors, dtype=np.float32))
+        if matrix.ndim != 2 or matrix.shape[0] != len(file_names):
+            raise ValueError(
+                f"Expected 2D vector matrix matching {len(file_names)} records, got shape {matrix.shape}"
+            )
+        self._ensure_index(matrix.shape[1])
+        if self.dimension != matrix.shape[1]:
+            raise ValueError(
+                f"Vector dimension changed from {self.dimension} to {matrix.shape[1]}"
+            )
+        start_row = self._index.ntotal
+        self._index.add(matrix)
+        for offset, file_name in enumerate(file_names):
+            record: dict[str, Any] = {"row_idx": start_row + offset, "file_name": file_name}
+            if extra_fields:
+                record.update(extra_fields[offset])
+            self._records.append(record)
+        logger.debug("Added %d vectors to FAISS store '%s' (%d total)", len(file_names), self.collection_name, self._index.ntotal)
+
+    def close(self) -> None:
+        if self._index is None:
+            return
+        faiss.write_index(self._index, str(self.directory / self.INDEX_FILENAME))
+        with (self.directory / self.RECORDS_FILENAME).open("w", encoding="utf-8") as fh:
+            for record in self._records:
+                fh.write(json.dumps(record, ensure_ascii=False) + "\n")
+        meta = {
+            "name": self.collection_name,
+            "dimension": self.dimension,
+            "total_rows": int(self._index.ntotal),
+            "metric": self.metric,
+            **self.extra_meta,
+        }
+        (self.directory / self.META_FILENAME).write_text(
+            json.dumps(meta, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        logger.info(
+            "Saved FAISS collection '%s' (%d rows, dim=%d) to %s",
+            self.collection_name, self._index.ntotal, self.dimension, self.directory,
+        )
+
+    @classmethod
+    def load_dataset_dir(cls, dataset_dir: Path) -> tuple[VectorDataset, faiss.Index]:
+        store_dir = Path(dataset_dir)
+        meta = json.loads((store_dir / cls.META_FILENAME).read_text(encoding="utf-8"))
+        index = faiss.read_index(str(store_dir / cls.INDEX_FILENAME))
+        records = [
+            json.loads(line)
+            for line in (store_dir / cls.RECORDS_FILENAME).read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        n = int(index.ntotal)
+        if len(records) != n:
+            raise ValueError(
+                f"FAISS store '{store_dir}' mismatch: {len(records)} records vs {n} indexed vectors"
+            )
+        vectors = (
+            np.asarray(index.reconstruct_n(0, n), dtype=np.float32)
+            if n > 0
+            else np.empty((0, int(meta["dimension"])), dtype=np.float32)
+        )
+        dataset = VectorDataset(
+            name=meta.get("name", store_dir.name),
+            records=records,
+            vectors=vectors,
+            meta=meta,
+        )
+        return dataset, index
+
+    @classmethod
+    def read_all(cls, directory: Path, collection_name: str) -> tuple[list[dict[str, Any]], np.ndarray]:
+        dataset, _index = cls.load_dataset_dir(Path(directory) / collection_name)
+        return dataset.records, dataset.vectors
+
+
+class QdrantVectorStore(VectorStore):
+    """Writes embedded vectors into a Qdrant collection using idempotent UUID5 IDs."""
+
+    _DISTANCE_MAP = {
+        "cosine": Distance.COSINE,
+        "euclid": Distance.EUCLID,
+        "l2": Distance.EUCLID,
+        "dot": Distance.DOT,
+    }
+
+    def __init__(
+        self,
+        url: str,
+        collection_name: str,
+        vector_name: str | None = None,
+        distance: str = "cosine",
+    ):
+        logger.info("Connecting to Qdrant at %s (collection '%s')", url, collection_name)
+        self.client = QdrantClient(url=url, check_compatibility=False)
+        self.collection_name = collection_name
+        self.vector_name = vector_name
+        self.distance = self._DISTANCE_MAP[distance.lower()]
         self.dimension: int | None = None
 
     def ensure_collection(self, dimension: int) -> None:
-        if self.client.has_collection(self.collection_name):
+        if self.dimension is not None:
+            return
+        if self.client.collection_exists(self.collection_name):
             self.dimension = dimension
             return
-
+        vector_params = VectorParams(size=dimension, distance=self.distance)
+        vectors_config = {self.vector_name: vector_params} if self.vector_name else vector_params
         logger.info(
-            "Collection '%s' doesn't exist yet, creating it (dim=%d) with a COSINE index so the "
-            "chapter vectors have somewhere to land and are loadable/searchable right away",
-            self.collection_name,
-            dimension,
+            "Qdrant collection '%s' doesn't exist yet, creating it (dim=%d, distance=%s)",
+            self.collection_name, dimension, self.distance,
         )
-        create_milvus_collection(self.client, self.collection_name, dimension)
+        self.client.create_collection(
+            collection_name=self.collection_name,
+            vectors_config=vectors_config,
+        )
         self.dimension = dimension
-        logger.info("Collection '%s' created", self.collection_name)
 
-    def insert_batch(self, file_names: list[str], vectors: list[list[float]]) -> None:
-        self.ensure_collection(len(vectors[0]))
-        for vector in vectors:
+    def insert_batch(
+        self,
+        file_names: list[str],
+        vectors: list[list[float]] | np.ndarray,
+        extra_fields: list[dict[str, Any]] | None = None,
+    ) -> None:
+        if len(file_names) == 0:
+            return
+        rows_vec = vectors.tolist() if isinstance(vectors, np.ndarray) else vectors
+        self.ensure_collection(len(rows_vec[0]))
+        for vector in rows_vec:
             if self.dimension != len(vector):
                 raise ValueError(
                     f"Vector dimension changed from {self.dimension} to {len(vector)}"
                 )
-        logger.debug("Storing a batch of %d vectors in Milvus so they become searchable", len(vectors))
-        self.client.insert(
-            collection_name=self.collection_name,
-            data=[
-                {"vector": vector, "file_name": file_name}
-                for file_name, vector in zip(file_names, vectors)
-            ],
-        )
+        points = []
+        for idx, (file_name, vector) in enumerate(zip(file_names, rows_vec)):
+            payload: dict[str, Any] = {"file_name": file_name}
+            if extra_fields:
+                payload.update(extra_fields[idx])
+            stable_key = json.dumps(
+                {"collection": self.collection_name, "file_name": file_name, "bible": payload.get("bible")},
+                sort_keys=True,
+            )
+            point_id = str(uuid.uuid5(uuid.NAMESPACE_URL, stable_key))
+            vec_payload = {self.vector_name: vector} if self.vector_name else vector
+            points.append(PointStruct(id=point_id, vector=vec_payload, payload=payload))
+        self.client.upsert(collection_name=self.collection_name, points=points)
+        logger.debug("Upserted %d vectors into Qdrant collection '%s'", len(points), self.collection_name)
 
 
 class LocalDiskVectorStore(VectorStore):
     """Stores vectors as a single numpy memmap file per collection - a
-
-    dependency-free, no-server alternative to Milvus for local experiments.
+    dependency-free, no-server alternative for local experiments.
 
     Layout, under <directory>/<collection_name>/:
         vectors.dat   - raw float32 memmap, shape (total_rows, dimension)
         records.jsonl - one JSON object per row, same order as vectors.dat
-                         (at minimum {"file_name": ...}; LocalDiskCollectionMerger
-                         adds a "bible" field per row for the combined collection)
-        meta.json      - {"dimension": ..., "total_rows": ...}, so the memmap's
-                          shape can be reopened later without re-deriving it
-
-    total_rows must be known upfront (the memmap is a fixed-size file - the
-    caller already lists every source file before embedding starts, so this
-    is cheap to provide), but dimension is discovered lazily from the first
-    batch, mirroring MilvusVectorStore.ensure_collection's lazy creation.
+        meta.json     - {"dimension": ..., "total_rows": ...}
     """
 
     VECTORS_FILENAME = "vectors.dat"
@@ -141,13 +292,11 @@ class LocalDiskVectorStore(VectorStore):
     def insert_batch(
         self,
         file_names: list[str],
-        vectors: list[list[float]],
-        extra_fields: list[dict] | None = None,
+        vectors: list[list[float]] | np.ndarray,
+        extra_fields: list[dict[str, Any]] | None = None,
     ) -> None:
-        """extra_fields, when given, is one dict of additional record fields per
-
-        row (e.g. {"bible": "darby"}) - used by LocalDiskCollectionMerger to tag
-        the combined collection; plain per-bible embedding runs don't pass it."""
+        if len(file_names) == 0:
+            return
         self._ensure_open(len(vectors[0]))
         n = len(vectors)
         if self._next_row + n > self.total_rows:
@@ -162,10 +311,10 @@ class LocalDiskVectorStore(VectorStore):
         self._memmap[self._next_row:self._next_row + n] = np.asarray(vectors, dtype=np.float32)
         self._memmap.flush()
         for i, file_name in enumerate(file_names):
-            record = {"file_name": file_name}
+            record: dict[str, Any] = {"file_name": file_name}
             if extra_fields:
                 record.update(extra_fields[i])
-            self._records_file.write(json.dumps(record) + "\n")
+            self._records_file.write(json.dumps(record, ensure_ascii=False) + "\n")
         self._records_file.flush()
         self._next_row += n
         logger.debug("Wrote a batch of %d vectors to local disk store '%s'", n, self.collection_name)
@@ -177,15 +326,9 @@ class LocalDiskVectorStore(VectorStore):
             self._memmap.flush()
 
     @classmethod
-    def read_all(cls, directory: Path, collection_name: str) -> tuple[list[dict], np.memmap]:
-        """Reopens a completed collection for reading: a memory-mapped array of
-
-        vectors plus the parallel list of row records (file_name, and 'bible'
-        for a combined collection). Used by LocalDiskCollectionMerger, and
-        reusable for downstream analysis (e.g. a local-disk mode for
-        kpca_label.py, not built yet)."""
+    def read_all(cls, directory: Path, collection_name: str) -> tuple[list[dict[str, Any]], np.memmap]:
         store_dir = Path(directory) / collection_name
-        meta = json.loads((store_dir / cls.META_FILENAME).read_text())
+        meta = json.loads((store_dir / cls.META_FILENAME).read_text(encoding="utf-8"))
         vectors = np.memmap(
             store_dir / cls.VECTORS_FILENAME,
             dtype=np.float32,
@@ -198,3 +341,14 @@ class LocalDiskVectorStore(VectorStore):
             if line
         ]
         return records, vectors
+
+    @classmethod
+    def load_dataset(cls, directory: Path, collection_name: str) -> VectorDataset:
+        records, vectors = cls.read_all(directory, collection_name)
+        meta = json.loads((Path(directory) / collection_name / cls.META_FILENAME).read_text(encoding="utf-8"))
+        return VectorDataset(
+            name=collection_name,
+            records=records,
+            vectors=np.asarray(vectors, dtype=np.float32),
+            meta=meta,
+        )

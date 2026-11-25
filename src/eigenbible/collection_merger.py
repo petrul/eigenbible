@@ -1,88 +1,137 @@
-"""Rebuilds the combined collection out of already-populated per-bible
+"""Rebuilds a combined collection out of already-populated per-source collections
+by copying their vectors instead of re-embedding every document a second time.
 
-collections, by copying their vectors instead of re-embedding every chapter
-a second time. One implementation per backend (Milvus / local disk),
-matching whichever --backend the embed run used.
+Implementations for FAISS, Qdrant, and LocalDisk backends all share the
+CollectionMerger interface.
 """
 import logging
+from abc import ABC, abstractmethod
+from pathlib import Path
 
 import numpy as np
-from pymilvus import MilvusClient
 
-from .vector_store import LocalDiskVectorStore, create_milvus_collection
+from .vector_collection_reader import QdrantCollectionReader
+from .vector_store import FaissVectorStore, LocalDiskVectorStore, QdrantVectorStore
 
 logger = logging.getLogger(__name__)
 
 
-class MilvusCollectionMerger:
-    """Each copied row is tagged with a 'bible' field, so the combined
+class CollectionMerger(ABC):
+    """Merges multiple named source collections into one combined target collection."""
 
-    collection can still be scoped back down to a single bible, or searched
-    across all of them at once."""
+    @abstractmethod
+    def merge(self, sources: dict[str, str], target_collection: str) -> int: ...
+
+
+class FaissCollectionMerger(CollectionMerger):
+    """Combines multiple local FAISS collections into one, tagging each row with its source."""
 
     BATCH_SIZE = 1000
 
-    def __init__(self, uri: str):
-        self.client = MilvusClient(uri=uri)
+    def __init__(self, directory: Path, source_field: str = "bible"):
+        self.directory = Path(directory)
+        self.source_field = source_field
 
-    def merge(self, sources: dict, target_collection: str) -> int:
+    def merge(self, sources: dict[str, str], target_collection: str) -> int:
+        datasets = {}
+        dimension = None
+        metric = "cosine"
         total = 0
-        target_ready = False
-        for bible_key, source_collection in sources.items():
-            logger.info("Copying vectors from '%s' (%s) into '%s'", source_collection, bible_key, target_collection)
-            offset = 0
-            while True:
-                rows = self.client.query(
-                    collection_name=source_collection,
-                    filter="id >= 0",
-                    output_fields=["vector", "file_name"],
-                    limit=self.BATCH_SIZE,
-                    offset=offset,
+        for source_key, source_collection in sources.items():
+            logger.info("Reading FAISS collection '%s' (%s)", source_collection, source_key)
+            dataset, _index = FaissVectorStore.load_dataset_dir(self.directory / source_collection)
+            if len(dataset) == 0:
+                continue
+            if dimension is None:
+                dimension = dataset.dimension
+                metric = dataset.meta.get("metric", "cosine")
+            elif dimension != dataset.dimension:
+                raise ValueError(
+                    f"Dimension mismatch: '{source_collection}' has {dataset.dimension}, expected {dimension}"
                 )
-                if not rows:
-                    break
-                if not target_ready:
-                    self._ensure_collection(target_collection, len(rows[0]["vector"]))
-                    target_ready = True
-                self.client.insert(
-                    collection_name=target_collection,
-                    data=[
-                        {"vector": row["vector"], "file_name": row["file_name"], "bible": bible_key}
-                        for row in rows
-                    ],
+            datasets[source_key] = dataset
+            total += len(dataset)
+
+        if total == 0:
+            return 0
+
+        target = FaissVectorStore(
+            self.directory,
+            target_collection,
+            metric=metric,
+            meta={"sources": list(sources.keys())},
+        )
+        for source_key, dataset in datasets.items():
+            for start in range(0, len(dataset), self.BATCH_SIZE):
+                end = min(start + self.BATCH_SIZE, len(dataset))
+                batch_records = dataset.records[start:end]
+                extra_fields = [
+                    {**{k: v for k, v in rec.items() if k not in ("file_name", "row_idx")}, self.source_field: source_key}
+                    for rec in batch_records
+                ]
+                target.insert_batch(
+                    file_names=[rec.get("file_name", rec.get("id", str(start + i))) for i, rec in enumerate(batch_records)],
+                    vectors=dataset.vectors[start:end],
+                    extra_fields=extra_fields,
                 )
-                offset += len(rows)
-                total += len(rows)
-                logger.info("  ... copied %d rows from '%s' so far", offset, source_collection)
+        target.close()
+        logger.info("Wrote %d combined rows to FAISS collection '%s'", total, target_collection)
         return total
 
-    def _ensure_collection(self, name: str, dimension: int) -> None:
-        if self.client.has_collection(name):
-            return
-        logger.info(
-            "Collection '%s' doesn't exist yet, creating it (dim=%d) with a 'bible' field so "
-            "rows from every bible can share one collection and still be told apart, plus a "
-            "COSINE index so it's loadable/searchable right away",
-            name,
-            dimension,
-        )
-        create_milvus_collection(self.client, name, dimension, extra_varchar_fields=["bible"])
-        logger.info("Collection '%s' created", name)
+
+class QdrantCollectionMerger(CollectionMerger):
+    """Combines multiple Qdrant collections into one, tagging each row with its source."""
+
+    BATCH_SIZE = 256
+
+    def __init__(
+        self,
+        url: str,
+        vector_name: str | None = None,
+        source_field: str = "bible",
+    ):
+        self.url = url
+        self.vector_name = vector_name
+        self.source_field = source_field
+
+    def merge(self, sources: dict[str, str], target_collection: str) -> int:
+        target = QdrantVectorStore(self.url, target_collection, vector_name=self.vector_name)
+        total = 0
+        for source_key, source_collection in sources.items():
+            logger.info("Copying Qdrant vectors from '%s' (%s) into '%s'", source_collection, source_key, target_collection)
+            reader = QdrantCollectionReader(
+                url=self.url,
+                collection_name=source_collection,
+                vector_name=self.vector_name,
+                batch_size=self.BATCH_SIZE,
+            )
+            dataset = reader.fetch_dataset()
+            for start in range(0, len(dataset), self.BATCH_SIZE):
+                end = min(start + self.BATCH_SIZE, len(dataset))
+                batch_records = dataset.records[start:end]
+                extra_fields = [
+                    {**{k: v for k, v in rec.items() if k not in ("file_name", "id")}, self.source_field: source_key}
+                    for rec in batch_records
+                ]
+                target.insert_batch(
+                    file_names=[rec.get("file_name", rec.get("id", str(start + i))) for i, rec in enumerate(batch_records)],
+                    vectors=dataset.vectors[start:end],
+                    extra_fields=extra_fields,
+                )
+            total += len(dataset)
+        logger.info("Combined %d rows into Qdrant collection '%s'", total, target_collection)
+        return total
 
 
-class LocalDiskCollectionMerger:
-    """Combined-collection equivalent for the local disk backend: reads every
-
-    source collection's already-written vectors+records back off disk (via
-    LocalDiskVectorStore.read_all) and writes them into one target
-    collection, each row tagged with which bible it came from."""
+class LocalDiskCollectionMerger(CollectionMerger):
+    """Combines multiple local-disk memmap collections into one target collection."""
 
     BATCH_SIZE = 1000
 
-    def __init__(self, directory):
-        self.directory = directory
+    def __init__(self, directory: Path):
+        self.directory = Path(directory)
 
-    def merge(self, sources: dict, target_collection: str) -> int:
+    def merge(self, sources: dict[str, str], target_collection: str) -> int:
         records_by_source = {}
         vectors_by_source = {}
         dimension = None

@@ -41,3 +41,4 @@ class BibliaEmbeddingImporter:
                 batch_index, len(batches), len(batch), imported, len(files),
             )
         return imported
+3
