@@ -2410,6 +2410,8 @@ def export_to_blog_cms(
         ),
         "format": "xhtml",
         "language": "en",
+        "disableSwipe": True,
+        "contentWidthPct": 120,
         "authorUsername": "petru",
         "publishedAt": f"{date_prefix}T16:00:00.000Z",
         "updatedAt": f"{date_prefix}T16:00:00.000Z",
